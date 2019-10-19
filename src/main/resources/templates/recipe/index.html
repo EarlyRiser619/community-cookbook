@@ -9,6 +9,12 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
+<p th:unless="${recipes} and ${recipes.size()}">Would you like to <a href="/recipe/add">add </a> a recipe?</p>
+
+<ul>
+    <li th:each="recipe : ${recipes}" th:text="${recipe}"></li>
+</ul>
+
 
 </body>
 </html>
