@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:padding="http://www.w3.org/1999/xhtml">
 <head  th:fragment="head">
     <meta charset="UTF-8" />
     <title th:text="${title}">Recipes</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+-->
 
+    <!-- for images: <  th:src="@{/images/imagename.gif}"> -->
 </head>
 <body>
 
@@ -16,8 +20,9 @@
     <a href="/home">Home</a> |
     <a href="/recipe/search">Search</a> |
     <a href="/recipe/add">Post A Recipe</a> |
-    <a href="/register">Register</a> |
-    <a href="/login">Login</a>
+    <a href="/login">Login</a> |
+    <a href="/register">Join Our Community</a>
 </nav>
+
 </body>
 </html>

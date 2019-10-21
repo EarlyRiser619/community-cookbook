@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8" />
-    <title th:text="${title}">Title</title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
 
 <h1 th:text="${title}">Default Title</h1>
@@ -12,8 +9,23 @@
 <br />
 
 <form method="post">
-    <input type="text" name="recipeName" />
+    Name of Recipe:<br />
+    <input type="text" name="recipeName" /><br />
+    Source:<br />
+    <input type="text" name="recipeSource" /><br />
+    Number of Servings:<br />
+    <input type="number" name="numberServings" /><br />
+    Prep Time (in minutes):<br />
+    <input type="number" name="prepTime" /><br />
+    Ingredients:<br />
+    <input type="text" name="ingredient" /><br />
+    Instructions:<br />
+    <input type="text" name="instruction" /><br />
+    Special Category:<br />
+    <input type="checkbox" name="recipeCategory" /><br />
+
     <input type="submit" value="Add Recipe" />
+
 
 </form>
 
