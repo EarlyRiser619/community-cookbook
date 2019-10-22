@@ -1,10 +1,17 @@
 package org.launchcode.communitycookbook.models;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Recipe {
 
+    @Id
+    @GeneratedValue
     private int id;
 
     private String name;
@@ -13,29 +20,34 @@ public class Recipe {
 
     private int servings;
 
-    private float prepTime;
+    private int time;
 
-    private List<Ingredient> ingredients = new ArrayList<>();
+    private String ingredient;
+
+    /*private List<Ingredient> ingredients = new ArrayList<>();*/
 
     private String instructions;
 
-    private List<Category> categories = new ArrayList<>();
+    private String category;
 
-    public void addIngredient(Ingredient item){
+    /*private List<Category> categories = new ArrayList<>();*/
+
+    /*public void addIngredient(Ingredient item){
         ingredients.add(item);
-    }
+    }*/
 
-    public void addCategory(Category category){
+    /*public void addCategory(Category category){
         categories.add(category);
-    }
+    }*/
 
     public Recipe() {}
 
-    public Recipe(String name, String source, int servings, float prepTime, String instructions) {
+    public Recipe(String name, String source, int servings, int time, String ingredient, String instructions) {
         this.name = name;
         this.source = source;
         this.servings = servings;
-        this.prepTime = prepTime;
+        this.time = time;
+        this.ingredient = ingredient;
         this.instructions = instructions;
     }
 
@@ -53,15 +65,23 @@ public class Recipe {
 
     public void setServings(int servings) { this.servings = servings; }
 
-    public float getPrepTime() { return prepTime; }
+    public int getTime() { return time; }
 
-    public void setPrepTime(float prepTime) { this.prepTime = prepTime; }
+    public void setTime(int time) { this.time = time; }
+
+    public String getIngredient() { return ingredient; }
+
+    public void setIngredient(String ingredient) { this.ingredient = ingredient; }
 
     public String getInstructions() { return instructions; }
 
     public void setInstructions(String instructions) { this.instructions = instructions; }
 
-    public List<Ingredient> getIngredients () { return ingredients; }
+    public String getCategory() { return category; }
 
-    public List<Category> getCategories () { return categories; }
+    public void setCategory(String category) { this.category = category; }
+
+    /*public List<Ingredient> getIngredients () { return ingredients; }*/
+
+    /*public List<Category> getCategories () { return categories; }*/
 }

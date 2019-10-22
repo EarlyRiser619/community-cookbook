@@ -2,27 +2,47 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-
 <h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
 <br />
 
-<form method="post">
-    Name of Recipe:<br />
-    <input type="text" name="recipeName" /><br />
-    Source:<br />
-    <input type="text" name="recipeSource" /><br />
-    Number of Servings:<br />
-    <input type="number" name="numberServings" /><br />
-    Prep Time (in minutes):<br />
-    <input type="number" name="prepTime" /><br />
-    Ingredients:<br />
-    <input type="text" name="ingredient" /><br />
-    Instructions:<br />
-    <input type="text" name="instruction" /><br />
-    Special Category:<br />
-    <input type="checkbox" name="recipeCategory" /><br />
+<form method="post" th:object="${recipe}">
+    <div>
+        <label th:for="name">Name of Recipe:</label>
+        <input th:field="*{name}" />
+        <span th:errors="*{name}" class="error"></span>
+    </div>
+    <div>
+        <label th:for="source">Source:</label>
+        <input th:field="*{source}" />
+        <span th:errors="*{source}" class="errors"></span>
+    </div>
+    <div>
+        <label th:for="servings">Number of Servings:</label>
+        <input th:field="*{servings}" />
+        <span th:errors="*{servings}" class="errors"></span>
+    </div>
+    <div>
+        <label th:for="time">Prep Time (in minutes):</label>
+        <input th:field="*{time}" />
+        <span th:errors="*{time}" class="errors"></span>
+    </div>
+    <div>
+        <label th:for="ingredient">Ingredients:</label>
+        <input th:field="*{ingredient}" />
+        <span th:errors="*{ingredient}" class="errors"></span>
+    </div>
+    <div>
+        <label th:for="instructions">Instructions:</label>
+        <input th:field="*{instructions}" />
+        <span th:errors="*{instructions}" class="errors"></span>
+    </div>
+    <div>
+        <label th:for="category">Special Category:</label>
+        <input th:field="*{category}" />
+        <span th:errors="*{category}" class="errors"></span>
+    </div>
 
     <input type="submit" value="Add Recipe" />
 

@@ -1,15 +1,21 @@
 package org.launchcode.communitycookbook.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Ingredient {
 
+    @Id
+    @GeneratedValue
     private int id;
 
     private String name;
 
-    private List<Recipe> recipes = new ArrayList<>();
+    /*private List<Recipe> recipes = new ArrayList<>();*/
 
     public Ingredient() {}
 
