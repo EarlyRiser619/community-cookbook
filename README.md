@@ -1,6 +1,21 @@
-# community-cookbook
+## Welcome to Community Cookbook!
 Capstone Project
 
+#About
+I was inspired to connect people where they have a daily need. Every day
+I find myself agonizing over having to cook *another meal* for my family.
+Every day it was a struggle to find inspiration and motivation to make
+meal times fun. So I decided to create a web app that allows users to 
+connect over the common occurrence of eating together. This project allows 
+people to share their tried and true family favorites and browse what others
+are making. Whether its a dinner party appetizer, or a special breakfast; 
+whether you have two hours or just 30 minutes to create something delicious;
+anyone will be able to find what they need for their culinary occasion.
+
+*Please enjoy!*
+
+
+#License
 MIT License
 
 Copyright (c) [2019] [Gina Leuty]
