@@ -49,4 +49,11 @@ public class UserController {
         userDao.save(user);
         return "redirect:";
     }
+
+    @RequestMapping(value="login", method= RequestMethod.GET)
+    public String login(Model model){
+        model.addAttribute("title", "Login");
+        return "user/login";
+    }
+
 }
