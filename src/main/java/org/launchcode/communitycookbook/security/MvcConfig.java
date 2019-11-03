@@ -1,4 +1,4 @@
-package org.launchcode.communitycookbook;
+package org.launchcode.communitycookbook.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
