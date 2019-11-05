@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments :: head"></head>
 <body>
 
@@ -8,7 +9,7 @@
 <nav th:replace="fragments :: navigation"></nav>
 <br />
 
-<form method="post" <!--th:object="${user}"--> >
+<form method="post"> <!--th:object="${user}"--> >
     <div>
         <label th:for="username">Username:</label>
         <input type="text" />
