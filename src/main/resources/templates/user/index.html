@@ -6,8 +6,10 @@
 <h1 th:text="${title}"></h1>
 
 <nav th:replace="fragments :: navigation"></nav>
-
-<p th:text="'Welcome ' + ${username} + ' to your profile!'">Welcome User!</p>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out" />
+</form>
+<h2 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h2>
 
 </body>
 </html>
