@@ -15,7 +15,7 @@
 <div th:if="${param.logout}">
     You have been logged out.
 </div>
-<form th:action="@{/user/login}" method="post"> <!--th:object="${user}"--> >
+<form th:action="@{/user/login}" method="post"> <!--th:object="${user}"-->
     <div>
         <label th:for="username">Username: <input type="text" name="username" /></label>
         <!--<span th:errors="*{username}" class="error"></span>-->

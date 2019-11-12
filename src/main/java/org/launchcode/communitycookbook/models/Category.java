@@ -1,8 +1,9 @@
 package org.launchcode.communitycookbook.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +14,13 @@ public class Category {
     @GeneratedValue
     private int id;
 
+    @NotNull
+    @Size(min=3, max=30)
     private String name;
 
-    /*private List<Recipe> recipes = new ArrayList<>();*/
+    @OneToMany
+    @JoinColumn(name = "category_id")
+    private List<Recipe> recipes = new ArrayList<>();
 
     public Category() {}
 
@@ -26,4 +31,6 @@ public class Category {
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }
+
+    public List<Recipe> getRecipes() { return recipes; }
 }

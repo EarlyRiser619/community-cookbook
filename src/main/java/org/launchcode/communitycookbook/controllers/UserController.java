@@ -56,4 +56,9 @@ public class UserController {
         return "user/login";
     }
 
+    @RequestMapping(value="login", method= RequestMethod.POST)
+    public String login(Model model, User user){
+        return "user/index";
+    }
+
 }
