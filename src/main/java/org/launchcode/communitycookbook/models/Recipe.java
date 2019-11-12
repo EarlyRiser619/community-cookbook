@@ -3,10 +3,7 @@ package org.launchcode.communitycookbook.models;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,18 +27,15 @@ public class Recipe {
 
     private String ingredient;
 
-    /*private List<Ingredient> ingredients = new ArrayList<>();*/
+    @ManyToMany(mappedBy = "recipes")
+    private List<Ingredient> ingredients;
 
     private String instructions;
 
     @ManyToOne
     private Category category;
 
-    /*private List<Category> categories = new ArrayList<>();*/
-
-    /*public void addIngredient(Ingredient item){
-        ingredients.add(item);
-    }*/
+    public void addIngredient(Ingredient item){ ingredients.add(item); }
 
     /*public void addCategory(Category category){
         categories.add(category);
