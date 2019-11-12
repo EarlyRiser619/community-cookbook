@@ -34,23 +34,18 @@ public class Recipe {
 
     private String instructions;
 
-    @ManyToOne
-    private Category category;
+    @ManyToMany
+    private List<Category> categories;
 
     public void addIngredient(Ingredient item){ ingredients.add(item); }
 
-    /*public void addCategory(Category category){
-        categories.add(category);
-    }*/
-
     public Recipe() {}
 
-    public Recipe(String name, String source, int servings, int time, String ingredient, String instructions) {
+    public Recipe(String name, String source, int servings, int time, String instructions) {
         this.name = name;
         this.source = source;
         this.servings = servings;
         this.time = time;
-        this.ingredient = ingredient;
         this.instructions = instructions;
     }
 
@@ -84,11 +79,7 @@ public class Recipe {
 
     public void setType(RecipeType type) { this.type = type; }
 
-    /* public String getCategory() { return category; } */
+    public List<Ingredient> getIngredients () { return ingredients; }
 
-    /* public void setCategory(String category) { this.category = category; } */
-
-    /*public List<Ingredient> getIngredients () { return ingredients; }*/
-
-    /*public List<Category> getCategories () { return categories; }*/
+    public List<Category> getCategories () { return categories; }
 }

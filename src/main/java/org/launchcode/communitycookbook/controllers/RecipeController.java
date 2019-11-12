@@ -1,7 +1,9 @@
 package org.launchcode.communitycookbook.controllers;
 
+import org.launchcode.communitycookbook.models.Category;
 import org.launchcode.communitycookbook.models.Recipe;
 import org.launchcode.communitycookbook.models.RecipeType;
+import org.launchcode.communitycookbook.models.data.CategoryDao;
 import org.launchcode.communitycookbook.models.data.RecipeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("recipe")
@@ -22,6 +25,9 @@ public class RecipeController {
 
     @Autowired
     private RecipeDao recipeDao;
+
+    @Autowired
+    private CategoryDao categoryDao;
 
     @RequestMapping(value = "")
     public String index(Model model) {
@@ -55,6 +61,7 @@ public class RecipeController {
         model.addAttribute("title", "Add Recipe");
         model.addAttribute(new Recipe());
         model.addAttribute("recipeTypes", RecipeType.values());
+        model.addAttribute("categories", categoryDao.findAll());
         return "recipe/add";
     }
 

@@ -12,6 +12,7 @@
 <ul>
     <li th:each="recipe :  ${recipes}" th:text="${recipe.name}"></li>
     <li th:each="recipe :  ${recipes}" th:text="${recipe.type.name}"></li>
+    <li th:each="recipe :  ${recipes}" th:text="${recipe.category.name}"></li>
     <li th:each="recipe :  ${recipes}" th:text="${recipe.source}"></li>
 </ul>
 

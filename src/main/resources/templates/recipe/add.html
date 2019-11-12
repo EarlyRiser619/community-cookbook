@@ -17,10 +17,14 @@
     <div>
         <label th:for="type">Type</label>
         <select th:field="*{type}">
-            <option th:each="recipeTypes : ${recipeTypes}"
+            <option th:each="recipeType : ${recipeTypes}"
                     th:text="${recipeType.name}"
                     th:value="${recipeType}"></option>
         </select>
+    </div>
+    <div th:each="category : ${categories}">
+        <input type="checkbox" th:field="*{category}" th:value="${category.name}" />
+        <label th:text="${category.name}">Category</label>
     </div>
     <div>
         <label th:for="source">Source</label>

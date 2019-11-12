@@ -18,9 +18,10 @@ public class Category {
     @Size(min=3, max=30)
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "category_id")
+    @ManyToMany(mappedBy= "categories")
     private List<Recipe> recipes = new ArrayList<>();
+
+    public void addRecipe(Recipe recipe) { recipes.add(recipe); }
 
     public Category() {}
 
