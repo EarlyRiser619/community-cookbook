@@ -19,6 +19,8 @@ public class Recipe {
     @Size(min=3, max=40)
     private String name;
 
+    private RecipeType type;
+
     private String source;
 
     private int servings;
@@ -77,6 +79,10 @@ public class Recipe {
     public String getInstructions() { return instructions; }
 
     public void setInstructions(String instructions) { this.instructions = instructions; }
+
+    public RecipeType getType() { return type; }
+
+    public void setType(RecipeType type) { this.type = type; }
 
     /* public String getCategory() { return category; } */
 

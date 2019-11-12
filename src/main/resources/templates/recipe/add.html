@@ -10,37 +10,45 @@
 
 <form method="post" th:object="${recipe}">
     <div>
-        <label th:for="name">Name of Recipe:</label>
+        <label th:for="name">Name of Recipe</label>
         <input th:field="*{name}" />
         <span th:errors="*{name}" class="error"></span>
     </div>
     <div>
-        <label th:for="source">Source:</label>
+        <label th:for="type">Type</label>
+        <select th:field="*{type}">
+            <option th:each="recipeTypes : ${recipeTypes}"
+                    th:text="${recipeType.name}"
+                    th:value="${recipeType}"></option>
+        </select>
+    </div>
+    <div>
+        <label th:for="source">Source</label>
         <input th:field="*{source}" />
         <span th:errors="*{source}" class="errors"></span>
     </div>
     <div>
-        <label th:for="servings">Number of Servings:</label>
+        <label th:for="servings">Number of Servings</label>
         <input th:field="*{servings}" />
         <span th:errors="*{servings}" class="errors"></span>
     </div>
     <div>
-        <label th:for="time">Prep Time (in minutes):</label>
+        <label th:for="time">Prep Time (in minutes)</label>
         <input th:field="*{time}" />
         <span th:errors="*{time}" class="errors"></span>
     </div>
     <div>
-        <label th:for="ingredient">Ingredients:</label>
+        <label th:for="ingredient">Ingredients</label>
         <input th:field="*{ingredient}" />
         <span th:errors="*{ingredient}" class="errors"></span>
     </div>
     <div>
-        <label th:for="instructions">Instructions:</label>
+        <label th:for="instructions">Instructions</label>
         <input th:field="*{instructions}" />
         <span th:errors="*{instructions}" class="errors"></span>
     </div>
     <div>
-        <label th:for="category">Special Category:</label>
+        <label th:for="category">Special Category</label>
         <input th:field="*{category}" />
         <span th:errors="*{category}" class="errors"></span>
     </div>

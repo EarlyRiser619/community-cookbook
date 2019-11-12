@@ -1,6 +1,7 @@
 package org.launchcode.communitycookbook.controllers;
 
 import org.launchcode.communitycookbook.models.Recipe;
+import org.launchcode.communitycookbook.models.RecipeType;
 import org.launchcode.communitycookbook.models.data.RecipeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,7 @@ public class RecipeController {
     public String displayAddRecipeForm(Model model) {
         model.addAttribute("title", "Add Recipe");
         model.addAttribute(new Recipe());
+        model.addAttribute("recipeTypes", RecipeType.values());
         return "recipe/add";
     }
 
