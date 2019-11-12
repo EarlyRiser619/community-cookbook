@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments :: head"></head>
+<body>
+<h1 th:text="${title}"></h1>
+
+<nav th:replace="fragments :: navigation"></nav><br />
+
+<p>This is where a specific recipe will be displayed</p><br />
+<ul>
+    <li>Title</li>
+    <li>RecipeType</li>
+    <li>Category(ies)</li>
+    <li>Author Name (link to all recipes by this author)</li>
+    <li>Source</li>
+    <li>Servings</li>
+    <li>Prep time</li>
+    <li>Ingredients</li>
+    <li>Instructions</li>
+</ul>
+
+</body>
+</html>

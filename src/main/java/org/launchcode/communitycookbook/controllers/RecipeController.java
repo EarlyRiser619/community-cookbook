@@ -32,6 +32,23 @@ public class RecipeController {
         return "recipe/index";
     }
 
+    @RequestMapping(value = "search")
+    public String search(Model model) {
+        model.addAttribute("title", "Search All Recipes");
+
+        return "recipe/search";
+    }
+
+    /*@RequestMapping(value = "search/results")
+    public String listSearchResults(Model model) {
+        model.addAttribute("title", "Search Results");
+    }  */
+
+    /*@RequestMapping(value = "search/{recipeId}")
+    public String indivSearchResults(Model model) {
+        model.addAttribute("title", "{Recipe.name}");
+    }  */
+
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddRecipeForm(Model model) {
@@ -42,7 +59,7 @@ public class RecipeController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute @Valid Recipe newRecipe, Errors errors){
+    public String processAddRecipeForm(Model model, @ModelAttribute @Valid Recipe newRecipe, Errors errors){
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Recipe");
