@@ -2,10 +2,7 @@ package org.launchcode.communitycookbook.models;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +18,9 @@ public class Ingredient {
     @Size(min=3, max=30)
     private String name;
 
-    @ManyToMany
-    private List<Recipe> recipes;
+    @OneToMany
+    @JoinColumn(name = "ingredient_id")
+    private List<Recipe> recipes = new ArrayList<>();
 
     public Ingredient() {}
 

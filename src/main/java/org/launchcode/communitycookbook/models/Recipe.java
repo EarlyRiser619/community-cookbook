@@ -21,6 +21,9 @@ public class Recipe {
 
     private RecipeType type;
 
+    @ManyToOne
+    private User user;
+
     private String source;
 
     private int servings;
