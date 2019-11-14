@@ -7,6 +7,10 @@
 
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
     <script type="text/javascript" th:src="@{/js/script.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 -->
@@ -14,7 +18,7 @@
     <!-- for images: <  th:src="@{/images/imagename.gif}"> -->
 </head>
 <body>
-
+<br />
 <h1>My Recipes</h1>
 
 <nav th:fragment="navigation">
@@ -22,7 +26,7 @@
     <a href="/recipe/search">Search</a> |
     <a href="/recipe/add">Post A Recipe</a> |
     <a href="/user/login">Login</a> |
-    <a href="/user/add">Join Our Community</a>
+    <a href="/registration">Join Our Community</a>
 </nav>
 
 </body>
