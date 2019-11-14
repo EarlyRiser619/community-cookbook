@@ -26,12 +26,12 @@ public class LoginController {
         return modelAndView;
     }
 
-    @RequestMapping(value={"/login"}, method = RequestMethod.POST)
+    /* @RequestMapping(value={"/login"}, method = RequestMethod.POST)
     public ModelAndView loggedIn(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("user/index");
         return modelAndView;
-    }
+    } */
 
     @RequestMapping(value="/registration", method = RequestMethod.GET)
     public ModelAndView registration(){

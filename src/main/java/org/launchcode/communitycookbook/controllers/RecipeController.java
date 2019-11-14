@@ -3,8 +3,11 @@ package org.launchcode.communitycookbook.controllers;
 import org.launchcode.communitycookbook.models.Category;
 import org.launchcode.communitycookbook.models.Recipe;
 import org.launchcode.communitycookbook.models.RecipeType;
+import org.launchcode.communitycookbook.models.User;
 import org.launchcode.communitycookbook.models.data.CategoryDao;
 import org.launchcode.communitycookbook.models.data.RecipeDao;
+import org.launchcode.communitycookbook.models.data.UserDao;
+import org.launchcode.communitycookbook.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.plaf.synth.SynthTreeUI;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -28,6 +32,11 @@ public class RecipeController {
 
     @Autowired
     private CategoryDao categoryDao;
+
+    @Autowired
+    private UserService userService;
+
+    private UserDao userDao;
 
     @RequestMapping(value = "")
     public String index(Model model) {
@@ -76,6 +85,15 @@ public class RecipeController {
 
         recipeDao.save(newRecipe);
         return "redirect:";
+    }
+
+    @RequestMapping(value = "user/home")
+    public String userIndex(Model model){
+        /* need to verify active session for user and pass user info into model
+        User loggedInUser = userService.findUserByEmail(user.getName()); */
+        model.addAttribute("title", "Welcome!");
+        /* model.addAttribute("user", loggedInUser); */
+        return "user/index";
     }
 
 }
