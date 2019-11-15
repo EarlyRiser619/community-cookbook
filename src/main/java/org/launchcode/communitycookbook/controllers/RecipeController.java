@@ -88,11 +88,12 @@ public class RecipeController {
     }
 
     @RequestMapping(value = "user/home")
-    public String userIndex(Model model){
-        /* need to verify active session for user and pass user info into model
-        User loggedInUser = userService.findUserByEmail(user.getName()); */
-        model.addAttribute("title", "Welcome!");
-        /* model.addAttribute("user", loggedInUser); */
+    public String userIndex(Model model, HttpServletRequest request){
+        /* need to verify active session for user and pass user info into model*/
+
+        User loggedInUser = userService.findUserByEmail(request.getRemoteUser());
+        model.addAttribute("title", loggedInUser.getName() + "'s Recipes");
+        model.addAttribute("user", loggedInUser);
         return "user/index";
     }
 

@@ -10,7 +10,7 @@
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out" />
 </form>
-<h2 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h2>
+<h2 th:inline="text">Welcome <span th:text="${user.name} + ' ' + ${user.lastName}" />!</h2>
 
 </body>
 </html>
