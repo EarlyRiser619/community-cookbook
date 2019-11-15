@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -37,8 +38,12 @@ public class Recipe {
 
     private String instructions;
 
-    @ManyToMany
-    private List<Category> categories;
+    @ElementCollection(targetClass = Category.class)
+    @CollectionTable(name = "recipe_category",
+            joinColumns = @JoinColumn(name = "recipe_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category_id")
+    private Set<Category> categorySet;
 
     public void addIngredient(Ingredient item){ ingredients.add(item); }
 
@@ -84,5 +89,5 @@ public class Recipe {
 
     public List<Ingredient> getIngredients () { return ingredients; }
 
-    public List<Category> getCategories () { return categories; }
+    public Set<Category> getCategories () { return categorySet; }
 }

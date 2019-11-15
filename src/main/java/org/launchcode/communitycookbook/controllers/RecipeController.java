@@ -4,24 +4,21 @@ import org.launchcode.communitycookbook.models.Category;
 import org.launchcode.communitycookbook.models.Recipe;
 import org.launchcode.communitycookbook.models.RecipeType;
 import org.launchcode.communitycookbook.models.User;
-import org.launchcode.communitycookbook.models.data.CategoryDao;
 import org.launchcode.communitycookbook.models.data.RecipeDao;
 import org.launchcode.communitycookbook.models.data.UserDao;
 import org.launchcode.communitycookbook.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.plaf.synth.SynthTreeUI;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Locale;
 
 @Controller
 @RequestMapping("recipe")
@@ -29,9 +26,6 @@ public class RecipeController {
 
     @Autowired
     private RecipeDao recipeDao;
-
-    @Autowired
-    private CategoryDao categoryDao;
 
     @Autowired
     private UserService userService;
@@ -42,7 +36,7 @@ public class RecipeController {
     public String index(Model model) {
 
         model.addAttribute("recipes", recipeDao.findAll());
-        model.addAttribute("title", "My Recipes");
+        model.addAttribute("title", "All Recipes");
 
         return "recipe/index";
     }
@@ -70,7 +64,7 @@ public class RecipeController {
         model.addAttribute("title", "Add Recipe");
         model.addAttribute(new Recipe());
         model.addAttribute("recipeTypes", RecipeType.values());
-        model.addAttribute("categories", categoryDao.findAll());
+        model.addAttribute("categories", Category.values());
         return "recipe/add";
     }
 
@@ -84,8 +78,12 @@ public class RecipeController {
         }
 
         recipeDao.save(newRecipe);
-        return "redirect:";
+        return "recipe/indiv";
     }
+
+    /*public String displayIndivRecipe(Model model, Errors errors){
+
+    }*/
 
     @RequestMapping(value = "user/home")
     public String userIndex(Model model, HttpServletRequest request){

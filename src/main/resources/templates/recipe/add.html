@@ -24,7 +24,7 @@
         </select>
     </div>
     <div th:each="category : ${categories}">
-        <input type="checkbox" th:field="*{category}" th:value="${category.id}" />
+        <input type="checkbox" th:field="*{categories}" th:value="*{categories}"/>
         <label th:text="${category.name}">Category</label>
     </div>
     <div>

@@ -7,8 +7,23 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-public class Category {
+
+public enum Category {
+
+    GLUTENFREE ("Gluten-Free"),
+    VEGITARIAN ("Vegitarian"),
+    VEGAN ("Vegan"),
+    LOWSODIUM ("Low Sodium");
+
+    private final String name;
+
+    Category(String name) { this.name = name; }
+
+    public String getName() { return name; }
+
+
+
+    /* If Category ever changes back into a class...
 
     @Id
     @GeneratedValue
@@ -33,5 +48,5 @@ public class Category {
 
     public void setName(String name) { this.name = name; }
 
-    public List<Recipe> getRecipes() { return recipes; }
+    public List<Recipe> getRecipes() { return recipes; } */
 }

@@ -11,10 +11,19 @@
 
 <p th:unless="${recipes} and ${recipes.size()}">Would you like to <a href="/recipe/add">add </a> a recipe?</p>
 
+<form th:action="@{/search}" method="post">
+    <input type="submit" value="Find A Recipe" />
+
+    <br />
+
+<form th:action="@{/userSearch}" method="post">
+    <input type="submit" value="Search All Users" />
+
+
+    <h4><li th:each="recipe :  ${recipes}" th:text="${recipe.name}"></li></h4>
 <ul>
-    <li th:each="recipe :  ${recipes}" th:text="${recipe.name}"></li>
     <li th:each="recipe :  ${recipes}" th:text="${recipe.type.name}"></li>
-    <li th:each="recipe :  ${recipes}" th:text="${recipe.category.name}"></li>
+    <!--<li th:each="recipe :  ${recipes}" th:for="category : ${categories}" th:text="${category}"></li>-->
     <li th:each="recipe :  ${recipes}" th:text="${recipe.source}"></li>
 </ul>
 
