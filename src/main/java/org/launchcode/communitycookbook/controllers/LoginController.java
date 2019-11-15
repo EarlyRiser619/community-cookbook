@@ -72,4 +72,10 @@ public class LoginController {
         modelAndView.setViewName("admin/home");
         return modelAndView;
     }
+
+    @RequestMapping(value="/logout")
+    public String logout(){
+        return "redirect:/recipe";
+    }
+
 }
