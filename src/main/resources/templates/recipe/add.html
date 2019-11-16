@@ -44,12 +44,35 @@
     </div>
     <div>
         <label th:for="ingredient">Ingredients</label>
-        <input th:field="*{ingredient}" />
+        <input th:field="*{ingredient}" type="text" id="txtVal"/>
+        <button onclick="addLi(); return false;">Add Ingredient</button>
         <span th:errors="*{ingredient}" class="errors"></span>
+
+        <ul id="ingrList">
+
+        </ul>
+
+        <script>
+            function addLi()
+            {
+                txtDoc = document.getElementById('txtVal');
+
+                var txtVal = txtDoc.value;
+                    listNode = document.getElementById('ingrList');
+                    liNode = document.createElement("LI");
+                    txtNode = document.createTextNode(txtVal);
+
+                liNode.appendChild(txtNode);
+                listNode.appendChild(liNode);
+                txtDoc.value = '';
+                txtDoc.focus();
+
+             }
+        </script>
     </div>
     <div>
         <label th:for="instructions">Instructions</label>
-        <input th:field="*{instructions}" />
+        <input type="textbox" th:field="*{instructions}" />
         <span th:errors="*{instructions}" class="errors"></span>
     </div>
 

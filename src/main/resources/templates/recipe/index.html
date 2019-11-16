@@ -20,7 +20,7 @@
     <input type="submit" value="Search All Users" />
 
 
-    <h4><li th:each="recipe :  ${recipes}" th:text="${recipe.name}"></li></h4>
+    <h4><li th:each="recipe :  ${recipes}" th:text="${recipe.name}"></li></h4> <!--make link to indiv recipe page -->
 <ul>
     <li th:each="recipe :  ${recipes}" th:text="${recipe.type.name}"></li>
     <!--<li th:each="recipe :  ${recipes}" th:for="category : ${categories}" th:text="${category}"></li>-->
