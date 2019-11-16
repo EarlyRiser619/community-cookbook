@@ -12,12 +12,13 @@
 <form method="post" th:object="${recipe}">
     <div>
         <label th:for="name">Name of Recipe</label>
-        <input th:field="*{name}" />
+        <input th:field="*{name}" required />
         <span th:errors="*{name}" class="error"></span>
     </div>
     <div>
         <label th:for="type">Type</label>
-        <select th:field="*{type}">
+        <select th:field="*{type}" required>
+            <option value="" hidden>Select a Type</option>
             <option th:each="recipeType : ${recipeTypes}"
                     th:text="${recipeType.name}"
                     th:value="${recipeType}"></option>
@@ -49,30 +50,26 @@
         <span th:errors="*{ingredient}" class="errors"></span>
 
         <ul id="ingrList">
-
         </ul>
 
         <script>
             function addLi()
             {
                 txtDoc = document.getElementById('txtVal');
-
                 var txtVal = txtDoc.value;
                     listNode = document.getElementById('ingrList');
                     liNode = document.createElement("LI");
                     txtNode = document.createTextNode(txtVal);
-
                 liNode.appendChild(txtNode);
                 listNode.appendChild(liNode);
                 txtDoc.value = '';
                 txtDoc.focus();
-
              }
         </script>
     </div>
     <div>
         <label th:for="instructions">Instructions</label>
-        <input type="textbox" th:field="*{instructions}" />
+        <input type="textbox" th:field="*{instructions}"  required />
         <span th:errors="*{instructions}" class="errors"></span>
     </div>
 
