@@ -12,5 +12,27 @@
 </form>
 <h2 th:inline="text">Welcome <span th:text="${user.name} + ' ' + ${user.lastName}" />!</h2>
 
+<br />
+
+<!--<p th:unless="${user.image}"><h4>Add A Profile Picture</h4></p>-->
+<input type="file" onchange="previewFile()"><br />
+<img src="" height="200" alt="Set a Profile Picture">
+
+<script>
+    function previewFile() {
+    var preview = document.querySelector('img');
+    var file    = document.querySelector('input[type=file]').files[0];
+    var reader  = new FileReader();
+
+    reader.addEventListener("load", function () {
+    preview.src = reader.result;
+    }, false);
+
+    if (file) {
+    reader.readAsDataURL(file);
+    }
+    }
+</script>
+
 </body>
 </html>

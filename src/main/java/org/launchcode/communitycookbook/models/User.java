@@ -6,6 +6,8 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -41,4 +43,7 @@ public class User {
     @OneToMany
     @JoinColumn(name = "author_id")
     private List<Recipe> recipes = new ArrayList<>();
+
+
+
 }
