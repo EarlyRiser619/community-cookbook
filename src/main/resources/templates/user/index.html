@@ -34,5 +34,9 @@
     }
 </script>
 
+<h4>Would you like to <a href="/recipe/add">add </a> a recipe?</h4>
+
+<h5><li th:each="recipe :  ${user.recipes}" th:text="${recipe.name}"></li></h5>
+
 </body>
 </html>

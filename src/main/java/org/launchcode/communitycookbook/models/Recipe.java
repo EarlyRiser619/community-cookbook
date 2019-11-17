@@ -31,10 +31,8 @@ public class Recipe {
 
     private int time;
 
-    private String ingredient;
-
-    @ManyToMany(mappedBy = "recipes")
-    private List<Ingredient> ingredients;
+    @ManyToOne
+    private Ingredient ingredient;
 
     private String instructions;
 
@@ -44,8 +42,6 @@ public class Recipe {
     @Enumerated(EnumType.STRING)
     @Column(name = "category_id")
     private Set<Category> categorySet;
-
-    public void addIngredient(Ingredient item){ ingredients.add(item); }
 
     public Recipe() {}
 
@@ -75,9 +71,9 @@ public class Recipe {
 
     public void setTime(int time) { this.time = time; }
 
-    public String getIngredient() { return ingredient; }
+    public Ingredient getIngredient() { return ingredient; }
 
-    public void setIngredient(String ingredient) { this.ingredient = ingredient; }
+    public void setIngredient(Ingredient ingredient) { this.ingredient = ingredient; }
 
     public String getInstructions() { return instructions; }
 
@@ -86,8 +82,6 @@ public class Recipe {
     public RecipeType getType() { return type; }
 
     public void setType(RecipeType type) { this.type = type; }
-
-    public List<Ingredient> getIngredients () { return ingredients; }
 
     public Set<Category> getCategories () { return categorySet; }
 }
