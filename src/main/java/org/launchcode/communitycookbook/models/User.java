@@ -19,7 +19,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
+    //@Column(name = "user_id")
     private int id;
     @Column(name = "email")
     @Email(message = "*Please provide a valid Email")
@@ -44,6 +44,9 @@ public class User {
     @JoinColumn(name = "user_id")
     private List<Recipe> userRecipes = new ArrayList<>();
 
-    public List<Recipe> getUserRecipes() { return userRecipes; }
+    public List<Recipe> getRecipes() { return userRecipes; }
 
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 }

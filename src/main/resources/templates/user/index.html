@@ -36,7 +36,25 @@
 
 <h4>Would you like to <a href="/recipe/add">add </a> a recipe?</h4>
 
-<h5><li th:each="recipe :  ${user.recipes}" th:text="${recipe.name}"></li></h5>
+<table class="table">
+
+    <tr>
+        <th>Name</th>
+        <th>Source</th>
+        <th>Type</th>
+    </tr>
+
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="${recipe.name}"></td>
+        <td th:text="${recipe.source}"></td>
+        <td th:text="${recipe.type}"></td>
+        <ul th:each="ingredient : ${ingredients}">
+            <li th:text="${ingredient.name}"></li>
+        </ul>
+    </tr>
+</table>
+
+<!--<h5><li th:each="recipe :  ${recipes}" th:text="${recipe.name}"></li></h5>-->
 
 </body>
 </html>

@@ -18,13 +18,15 @@ public class Ingredient {
     @Size(min=3, max=30)
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "ingredient_id")
-    private List<Recipe> recipes = new ArrayList<>();
+    @ManyToOne
+    private Recipe recipe;
 
     public Ingredient() {}
 
-    public void addRecipe(Recipe recipe){ recipes.add(recipe); }
+    public Ingredient(String name, Recipe recipe){
+        this.name = name;
+        this.recipe = recipe;
+    }
 
     public int getId() { return id; }
 
@@ -32,5 +34,7 @@ public class Ingredient {
 
     public void setName(String name) { this.name = name; }
 
-    public List<Recipe> getRecipes() { return recipes; }
+    public Recipe getRecipe() { return recipe; }
+
+    public void setRecipe(Recipe recipe) { this.recipe = recipe; }
 }

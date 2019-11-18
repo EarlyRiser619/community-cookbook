@@ -19,14 +19,26 @@
 <form th:action="@{/userSearch}" method="post">
     <input type="submit" value="Search All Users" />
 
+<table class="table">
 
-    <h4><li th:each="recipe :  ${recipes}" th:text="${recipe.name}"></li></h4> <!--make link to indiv recipe page -->
+
+    <tr>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Type</th>
+    </tr>
+    <!--make link to indiv recipe page -->
+    <tr th:each="recipe :  ${recipes}">
+        <td th:text="${recipe.name}"></td>
+        <td th:test="${recipe.user.name}"></td>
+        <td th:text="${recipe.type}"></td>
+    </tr>
 <!--<ul>
     <li th:each="recipe :  ${recipes}" th:text="${recipe.type.name}"></li>
     <li th:each="recipe :  ${recipes}" th:for="category : ${categories}" th:text="${category}"></li>
     <li th:each="recipe :  ${recipes}" th:text="${recipe.source}"></li>
 </ul>-->
-
+</table>
 
 </body>
 </html>

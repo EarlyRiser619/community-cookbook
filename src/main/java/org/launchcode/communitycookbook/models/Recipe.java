@@ -31,8 +31,9 @@ public class Recipe {
 
     private int time;
 
-    @ManyToOne
-    private Ingredient ingredient;
+    @OneToMany
+    @JoinColumn(name = "recipe_id")
+    private List<Ingredient> ingredients = new ArrayList<>();
 
     private String instructions;
 
@@ -45,9 +46,11 @@ public class Recipe {
 
     public Recipe() {}
 
-    public Recipe(String name, String source, int servings, int time, String instructions) {
+    public Recipe(String name, User user, String source, RecipeType type, int servings, int time, String instructions) {
         this.name = name;
+        this.user = user;
         this.source = source;
+        this.type = type;
         this.servings = servings;
         this.time = time;
         this.instructions = instructions;
@@ -58,6 +61,10 @@ public class Recipe {
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }
+
+    public User getUser() { return user; }
+
+    public void setUser(User user) { this.user = user; }
 
     public String getSource() { return source; }
 
@@ -70,10 +77,6 @@ public class Recipe {
     public int getTime() { return time; }
 
     public void setTime(int time) { this.time = time; }
-
-    public Ingredient getIngredient() { return ingredient; }
-
-    public void setIngredient(Ingredient ingredient) { this.ingredient = ingredient; }
 
     public String getInstructions() { return instructions; }
 
