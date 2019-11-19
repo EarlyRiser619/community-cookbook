@@ -1,4 +1,4 @@
-package org.launchcode.communitycookbook.models;
+/* package org.launchcode.communitycookbook.models;
 
 import com.sun.istack.NotNull;
 
@@ -38,3 +38,4 @@ public class Ingredient {
 
     public void setRecipe(Recipe recipe) { this.recipe = recipe; }
 }
+*/

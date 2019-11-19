@@ -19,7 +19,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@Column(name = "user_id")
+    @Column(name = "user_id")
     private int id;
     @Column(name = "email")
     @Email(message = "*Please provide a valid Email")
@@ -41,7 +41,7 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
     @OneToMany
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userRec_id")
     private List<Recipe> userRecipes = new ArrayList<>();
 
     public List<Recipe> getRecipes() { return userRecipes; }

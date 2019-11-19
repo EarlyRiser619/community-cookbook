@@ -44,10 +44,10 @@
         <span th:errors="*{time}" class="errors"></span>
     </div>
     <div>
-        <label th:for="ingredient">Ingredients</label>
-        <input th:field="*{ingredient}" type="text" id="txtVal"/>
-        <button onclick="addLi(); return false;">Add Ingredient</button>
-        <span th:errors="*{ingredient}" class="errors"></span>
+        <label th:for="ingredients">Ingredients</label>
+        <input th:field="*{ingredients}" type="text" id="txtVal" />
+        <button onclick="addLi(); return false; ">Add Ingredient</button>
+        <span th:errors="*{ingredients}" class="errors"></span>
 
         <ul id="ingrList">
         </ul>

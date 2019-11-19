@@ -36,6 +36,7 @@ public class RecipeController {
 
         model.addAttribute("recipes", recipeDao.findAll());
         model.addAttribute("title", "All Recipes");
+        model.addAttribute("user", userDao.findAll());
 
         return "recipe/index";
     }
@@ -43,6 +44,7 @@ public class RecipeController {
     @RequestMapping(value = "search")
     public String search(Model model) {
         model.addAttribute("title", "Search All Recipes");
+        model.addAttribute("recipes", recipeDao.findAll());
 
         return "recipe/search";
     }
@@ -70,7 +72,7 @@ public class RecipeController {
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddRecipeForm(Model model, @ModelAttribute @Valid Recipe newRecipe,
-                                       HttpServletRequest request, Errors errors){
+                                       HttpServletRequest request, String ingredients, Errors errors){
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Recipe");
@@ -79,8 +81,10 @@ public class RecipeController {
             model.addAttribute("user", userDao.findAll());
             return "recipe/add";
         }
+
         User author = userDao.findByEmail(request.getRemoteUser());
         newRecipe.setUser(author);
+        newRecipe.addIngredient(ingredients);
         recipeDao.save(newRecipe);
         return "recipe/indiv";
     }

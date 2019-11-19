@@ -1,4 +1,4 @@
-package org.launchcode.communitycookbook.controllers;
+/*package org.launchcode.communitycookbook.controllers;
 
 import org.launchcode.communitycookbook.models.data.IngredientDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,3 +13,4 @@ public class IngredientController {
     private IngredientDao ingredientDao;
 
 }
+*/

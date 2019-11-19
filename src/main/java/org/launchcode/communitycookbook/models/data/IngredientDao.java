@@ -1,4 +1,4 @@
-package org.launchcode.communitycookbook.models.data;
+/*package org.launchcode.communitycookbook.models.data;
 
 import org.launchcode.communitycookbook.models.Ingredient;
 import org.springframework.data.repository.CrudRepository;
@@ -10,3 +10,4 @@ import javax.transaction.Transactional;
 @Transactional
 public interface IngredientDao extends CrudRepository<Ingredient, Integer> {
 }
+*/

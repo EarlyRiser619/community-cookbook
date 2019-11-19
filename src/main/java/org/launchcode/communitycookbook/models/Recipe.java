@@ -31,9 +31,10 @@ public class Recipe {
 
     private int time;
 
-    @OneToMany
-    @JoinColumn(name = "recipe_id")
-    private List<Ingredient> ingredients = new ArrayList<>();
+    /* @OneToMany
+    @JoinColumn(name = "recipe_id")*/
+    @ElementCollection
+    private List<String> ingredients = new ArrayList<>();
 
     private String instructions;
 
@@ -87,4 +88,9 @@ public class Recipe {
     public void setType(RecipeType type) { this.type = type; }
 
     public Set<Category> getCategories () { return categorySet; }
+
+    public List<String> getIngredients() { return ingredients; }
+
+    public void addIngredient(String ingredient) { this.ingredients.add(ingredient); }
+
 }

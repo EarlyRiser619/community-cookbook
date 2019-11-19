@@ -30,8 +30,8 @@
     <!--make link to indiv recipe page -->
     <tr th:each="recipe :  ${recipes}">
         <td th:text="${recipe.name}"></td>
-        <td th:test="${recipe.user.name}"></td>
-        <td th:text="${recipe.type}"></td>
+        <td th:text="${recipe.user.name}"></td>
+        <td th:text="${recipe.type.name}"></td>
     </tr>
 <!--<ul>
     <li th:each="recipe :  ${recipes}" th:text="${recipe.type.name}"></li>
