@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -72,7 +73,7 @@ public class RecipeController {
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddRecipeForm(Model model, @ModelAttribute @Valid Recipe newRecipe,
-                                       HttpServletRequest request, String ingredients, Errors errors){
+                                       HttpServletRequest request, ArrayList<String> ingredients, Errors errors){
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Recipe");
@@ -84,7 +85,7 @@ public class RecipeController {
 
         User author = userDao.findByEmail(request.getRemoteUser());
         newRecipe.setUser(author);
-        newRecipe.addIngredient(ingredients);
+        newRecipe.setIngredients(ingredients);
         recipeDao.save(newRecipe);
         return "recipe/indiv";
     }

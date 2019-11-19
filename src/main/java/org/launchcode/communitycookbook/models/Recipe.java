@@ -93,4 +93,6 @@ public class Recipe {
 
     public void addIngredient(String ingredient) { this.ingredients.add(ingredient); }
 
+    public void setIngredients(ArrayList<String> ingredients) { this.ingredients = ingredients; }
+
 }

@@ -26,18 +26,19 @@
         <th>Name</th>
         <th>Author</th>
         <th>Type</th>
+        <th>Ingredients</th>
     </tr>
     <!--make link to indiv recipe page -->
     <tr th:each="recipe :  ${recipes}">
         <td th:text="${recipe.name}"></td>
         <td th:text="${recipe.user.name}"></td>
         <td th:text="${recipe.type.name}"></td>
+        <td th:each="ingredient : ${recipe.ingredients}">
+            <ul>
+                <li th:text="${ingredient}"></li>
+            </ul></td>
     </tr>
-<!--<ul>
-    <li th:each="recipe :  ${recipes}" th:text="${recipe.type.name}"></li>
-    <li th:each="recipe :  ${recipes}" th:for="category : ${categories}" th:text="${category}"></li>
-    <li th:each="recipe :  ${recipes}" th:text="${recipe.source}"></li>
-</ul>-->
+
 </table>
 
 </body>
