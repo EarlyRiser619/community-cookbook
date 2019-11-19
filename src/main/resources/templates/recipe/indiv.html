@@ -20,5 +20,15 @@
     <li>Instructions</li>
 </ul>
 
+
+    <p th:text="${recipe.name}"></p>
+    <p th:text="${recipe.user.name}"></p>
+    <p th:text="${recipe.type.name}"></p>
+    <ul th:each="ingredient : ${recipe.ingredients}">
+            <li th:text="${ingredient}"></li>
+        </ul>
+</tr>
+</table>
+
 </body>
 </html>

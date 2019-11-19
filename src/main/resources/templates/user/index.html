@@ -35,21 +35,22 @@
 </script>
 
 <h4>Would you like to <a href="/recipe/add">add </a> a recipe?</h4>
-
+<br />
 <table class="table">
 
     <tr>
         <th>Name</th>
         <th>Source</th>
         <th>Type</th>
+        <th>Ingredients</th>
     </tr>
 
-    <tr th:each="recipe : ${recipes}">
+    <tr th:each="recipe : ${user.recipes}">
         <td th:text="${recipe.name}"></td>
         <td th:text="${recipe.source}"></td>
         <td th:text="${recipe.type}"></td>
         <ul th:each="ingredient : ${ingredients}">
-            <li th:text="${ingredient.name}"></li>
+            <li th:text="${ingredient}"></li>
         </ul>
     </tr>
 </table>

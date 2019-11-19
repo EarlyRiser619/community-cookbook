@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("recipe")
@@ -37,7 +38,7 @@ public class RecipeController {
 
         model.addAttribute("recipes", recipeDao.findAll());
         model.addAttribute("title", "All Recipes");
-        model.addAttribute("user", userDao.findAll());
+        model.addAttribute("users", userDao.findAll());
 
         return "recipe/index";
     }
@@ -87,12 +88,17 @@ public class RecipeController {
         newRecipe.setUser(author);
         newRecipe.setIngredients(ingredients);
         recipeDao.save(newRecipe);
-        return "recipe/indiv";
+        return "redirect:/recipe/indiv/" + newRecipe.getId();
     }
 
-    /*public String displayIndivRecipe(Model model, Errors errors){
+    @RequestMapping(value = "indiv/{recipeId}")
+    public String displayIndivRecipe(Model model, @PathVariable("recipeId") int recipeId, Errors errors){
+        Recipe recipe = recipeDao.findOne(recipeId);
+        model.addAttribute("title", recipe.getName());
+        model.addAttribute("recipe", recipe);
 
-    }*/
+        return "recipe/indiv";
+    }
 
     @RequestMapping(value = "user/home")
     public String userIndex(Model model, HttpServletRequest request){

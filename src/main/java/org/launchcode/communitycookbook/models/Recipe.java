@@ -47,13 +47,15 @@ public class Recipe {
 
     public Recipe() {}
 
-    public Recipe(String name, User user, String source, RecipeType type, int servings, int time, String instructions) {
+    public Recipe(String name, User user, String source, RecipeType type, int servings, int time, List<String> ingredients,
+                  String instructions) {
         this.name = name;
         this.user = user;
         this.source = source;
         this.type = type;
         this.servings = servings;
         this.time = time;
+        this.ingredients = ingredients;
         this.instructions = instructions;
     }
 

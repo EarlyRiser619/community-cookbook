@@ -45,8 +45,8 @@
     </div>
     <div>
         <label th:for="ingredients">Ingredients</label>
-        <input th:field="*{ingredient}" type="text" id="txtVal" />
-        <button onclick="addLi(); return false; ingredients.addIngredient(ingredient);">Add Ingredient</button>
+        <input th:field="*{ingredients}" type="text" id="txtVal" />
+        <button onclick="addLi(); return false;">Add Ingredient</button>
         <span th:errors="*{ingredients}" class="errors"></span>
 
         <ul id="ingrList">

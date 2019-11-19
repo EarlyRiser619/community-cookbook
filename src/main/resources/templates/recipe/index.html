@@ -19,27 +19,27 @@
 <form th:action="@{/userSearch}" method="post">
     <input type="submit" value="Search All Users" />
 
-<table class="table">
-
-
+<table width="600px">
     <tr>
-        <th>Name</th>
-        <th>Author</th>
-        <th>Type</th>
-        <th>Ingredients</th>
+        <th>Recipes</th>
+        <th>Authors</th>
+        <th>Recipe Types</th>
     </tr>
-    <!--make link to indiv recipe page -->
-    <tr th:each="recipe :  ${recipes}">
-        <td th:text="${recipe.name}"></td>
-        <td th:text="${recipe.user.name}"></td>
-        <td th:text="${recipe.type.name}"></td>
-        <td th:each="ingredient : ${recipe.ingredients}">
-            <ul>
-                <li th:text="${ingredient}"></li>
-            </ul></td>
+    <!--make link to each indiv page -->
+        <td th:each="recipe :  ${recipes}" th:text="${recipe.name}"></td>
+        <td th:each="user : ${users}" th:text="${user.name}"></td>
+        <td th:each="type : ${recipe.type}" th:text="${type.name}"></td>
+
     </tr>
 
 </table>
+
+    <ul>
+        <li th:each="recipe : ${recipes}">
+            <a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a>
+        </li>
+    </ul>
+
 
 </body>
 </html>
