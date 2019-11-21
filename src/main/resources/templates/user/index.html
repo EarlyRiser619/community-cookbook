@@ -52,6 +52,14 @@
             <a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a>
         </li>
     </ul>
+
+<tr>
+    <th>Recipes</th>
+</tr>
+<tr>
+    <td th:each="recipe :  ${recipes}"> <ul class="index-list">
+        <li><a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a></li></ul></td>
+</tr>
         <!--<td th:text="${recipe.source}"></td>
         <td th:text="${recipe.type}"></td>
         <ul th:each="ingredient : ${ingredients}">

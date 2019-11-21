@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.thymeleaf.util.StringUtils.contains;
+
 @Controller
 @RequestMapping("recipe")
 public class RecipeController {
@@ -44,13 +46,29 @@ public class RecipeController {
         return "recipe/index";
     }
 
-    @RequestMapping(value = "search")
-    public String search(Model model) {
-        model.addAttribute("title", "Search All Recipes");
-        model.addAttribute("recipes", recipeDao.findAll());
+    @PostMapping(value = "search/{byName}")
+    public String search(@ModelAttribute @Valid String byName, Model model, Errors errors) {
+        model.addAttribute("title", "Found Recipe");
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Find Recipe");
+            model.addAttribute("recipes", recipeDao.findAll());
+            return "recipe/search";
+        }
+
+        List<Recipe> searchByName = new ArrayList<>();
+        for (Recipe recipe : recipeDao.findAll()) {
+            if (contains(recipe.getName(), byName)){
+                searchByName.add(recipe);
+            }
+        }
+        model.addAttribute("results", searchByName);
 
         return "recipe/search";
     }
+
+
+
 
     /*@RequestMapping(value = "search/results")
     public String listSearchResults(Model model) {
@@ -110,7 +128,7 @@ public class RecipeController {
         List<Recipe> userRecipes = loggedInUser.getUserRecipes();
         model.addAttribute("title", loggedInUser.getName() + "'s Recipes");
         model.addAttribute("user", loggedInUser);
-        model.addAttribute("recipes", userRecipes);
+        model.addAttribute("recipes", loggedInUser.getUserRecipes());
         model.addAttribute("recipeTypes", RecipeType.values());
         return "user/index";
     }

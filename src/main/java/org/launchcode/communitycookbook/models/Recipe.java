@@ -97,4 +97,5 @@ public class Recipe {
 
     public void setIngredients(ArrayList<String> ingredients) { this.ingredients = ingredients; }
 
+
 }

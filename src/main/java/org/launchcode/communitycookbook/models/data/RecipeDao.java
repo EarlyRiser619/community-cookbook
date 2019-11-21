@@ -12,5 +12,6 @@ import javax.transaction.Transactional;
         default Recipe findOne(Integer id) {
             return (Recipe) findById(id).orElse(null);
         }
+
     }
 

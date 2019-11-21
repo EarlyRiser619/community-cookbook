@@ -10,16 +10,18 @@
 
 <hr />
 <tr>
-    <td th:each="type : ${recipeTypes}" th:text="${type} | "></td>
+    <td th:each="type : ${recipeTypes}" th:text="${type}"></td>
 </tr>
 
 <hr />
 
 <p th:unless="${recipes} and ${recipes.size()}">Would you like to <a href="/recipe/add">add </a> a recipe?</p>
 
-<form th:action="@{/search}" method="post">
-    <input type="submit" value="Find A Recipe" /></form>
-
+<form th:action="@{/recipe/search}" method="post">
+    <label th:for="byName">Search by Name of Recipe:</label>
+    <input type="text" id="byName" name="byName" />
+    <input type="submit" value="Find A Recipe" />
+</form>
     <br />
 
     <tr>
@@ -33,8 +35,11 @@
 
     <br />
 
-<form th:action="@{/userSearch}" method="post">
-    <input type="submit" value="Search All Users" /></form>
+<form th:action="@{/recipe/userSearch}" method="post">
+    <label th:for="byName">Search by Name of Author:</label>
+    <input type="text" id="byUser" name="byUser" />
+    <input type="submit" value="Find An Author" />
+</form>
 
     <tr>
         <th>Authors</th>
