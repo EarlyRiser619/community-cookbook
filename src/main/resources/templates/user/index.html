@@ -5,15 +5,13 @@
 <body>
 <nav th:replace="fragments :: navigation"></nav>
 <br />
-<h1 th:text="${title}"></h1>
-
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out" />
+
 </form>
-<h2 th:inline="text">Welcome <span th:text="${user.name} + ' ' + ${user.lastName}" />!</h2>
+<h1 th:inline="text">Welcome <span th:text="${user.name} + ' ' + ${user.lastName}" />!</h1>
 
 <br />
-
 <!--<p th:unless="${user.image}"><h4>Add A Profile Picture</h4></p>-->
 <input type="file" onchange="previewFile()"><br />
 <img src="" height="200" alt="Set a Profile Picture">
@@ -32,27 +30,34 @@
     reader.readAsDataURL(file);
     }
     }
-</script>
+</script><br />
+
+
+<h2 th:text="${title}"></h2>
+
 
 <h4>Would you like to <a href="/recipe/add">add </a> a recipe?</h4>
 <br />
-<table class="table">
+<!--<table class="table">
 
-    <tr>
-        <th>Name</th>
-        <th>Source</th>
-        <th>Type</th>
-        <th>Ingredients</th>
-    </tr>
+<tr>
+    <th>Name</th>
+    <th>Source</th>
+    <th>Type</th>
+    <th>Ingredients</th>
+</tr> -->
 
-    <tr th:each="recipe : ${user.recipes}">
-        <td th:text="${recipe.name}"></td>
-        <td th:text="${recipe.source}"></td>
+    <ul>
+        <li th:each="recipe : ${user.userRecipes}">
+            <a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a>
+        </li>
+    </ul>
+        <!--<td th:text="${recipe.source}"></td>
         <td th:text="${recipe.type}"></td>
         <ul th:each="ingredient : ${ingredients}">
             <li th:text="${ingredient}"></li>
-        </ul>
-    </tr>
+        </ul> -->
+
 </table>
 
 <!--<h5><li th:each="recipe :  ${recipes}" th:text="${recipe.name}"></li></h5>-->

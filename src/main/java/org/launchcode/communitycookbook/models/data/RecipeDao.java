@@ -9,5 +9,8 @@ import javax.transaction.Transactional;
     @Repository
     @Transactional
     public interface RecipeDao extends CrudRepository<Recipe, Integer> {
+        default Recipe findOne(Integer id) {
+            return (Recipe) findById(id).orElse(null);
+        }
     }
 

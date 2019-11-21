@@ -38,6 +38,7 @@ public class RecipeController {
 
         model.addAttribute("recipes", recipeDao.findAll());
         model.addAttribute("title", "All Recipes");
+        model.addAttribute("recipeTypes", RecipeType.values());
         model.addAttribute("users", userDao.findAll());
 
         return "recipe/index";
@@ -91,8 +92,9 @@ public class RecipeController {
         return "redirect:/recipe/indiv/" + newRecipe.getId();
     }
 
+
     @RequestMapping(value = "indiv/{recipeId}")
-    public String displayIndivRecipe(Model model, @PathVariable("recipeId") int recipeId, Errors errors){
+    public String displayIndivRecipe(@Valid @ModelAttribute("recipeId") int recipeId, Model model, Errors errors){
         Recipe recipe = recipeDao.findOne(recipeId);
         model.addAttribute("title", recipe.getName());
         model.addAttribute("recipe", recipe);
@@ -109,6 +111,7 @@ public class RecipeController {
         model.addAttribute("title", loggedInUser.getName() + "'s Recipes");
         model.addAttribute("user", loggedInUser);
         model.addAttribute("recipes", userRecipes);
+        model.addAttribute("recipeTypes", RecipeType.values());
         return "user/index";
     }
 

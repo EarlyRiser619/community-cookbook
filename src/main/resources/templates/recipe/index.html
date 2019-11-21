@@ -22,23 +22,25 @@
 <table width="600px">
     <tr>
         <th>Recipes</th>
+    </tr>
+    <tr>
+        <td th:each="recipe :  ${recipes}"><a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a></td>
+    </tr>
+    <tr>
         <th>Authors</th>
+    </tr>
+    <tr>
+        <td th:each="user : ${users}" th:text="${user.name}"></td>
+    </tr>
+    <tr>
         <th>Recipe Types</th>
     </tr>
-    <!--make link to each indiv page -->
-        <td th:each="recipe :  ${recipes}" th:text="${recipe.name}"></td>
-        <td th:each="user : ${users}" th:text="${user.name}"></td>
-        <td th:each="type : ${recipe.type}" th:text="${type.name}"></td>
-
+    <tr>
+        <td th:each="type : ${recipeType}"> <ul>
+            <li th:text="${type}"></li></ul></td>
     </tr>
 
 </table>
-
-    <ul>
-        <li th:each="recipe : ${recipes}">
-            <a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a>
-        </li>
-    </ul>
 
 
 </body>
