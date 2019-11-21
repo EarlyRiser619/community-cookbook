@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
-                      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:list-style-type="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
 <body>
 <nav th:replace="fragments :: navigation"></nav><br />
 <br />
 <h1 th:text="${title}"></h1>
 
+<hr />
+<tr>
+    <td th:each="type : ${recipeTypes}" th:text="${type} | "></td>
+</tr>
 
+<hr />
 
 <p th:unless="${recipes} and ${recipes.size()}">Would you like to <a href="/recipe/add">add </a> a recipe?</p>
 
 <form th:action="@{/search}" method="post">
-    <input type="submit" value="Find A Recipe" />
+    <input type="submit" value="Find A Recipe" /></form>
 
     <br />
 
-<form th:action="@{/userSearch}" method="post">
-    <input type="submit" value="Search All Users" />
-
-<table width="600px">
     <tr>
         <th>Recipes</th>
     </tr>
     <tr>
-        <td th:each="recipe :  ${recipes}"><a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a></td>
+        <td th:each="recipe :  ${recipes}"> <ul class="index-list">
+            <li><a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a></li></ul></td>
     </tr>
+
+
+    <br />
+
+<form th:action="@{/userSearch}" method="post">
+    <input type="submit" value="Search All Users" /></form>
+
     <tr>
         <th>Authors</th>
     </tr>
     <tr>
-        <td th:each="user : ${users}" th:text="${user.name}"></td>
+        <td th:each="user : ${users}"> <ul class="index-list">
+            <li th:text="${user.name}"></li></ul></td>
     </tr>
-    <tr>
-        <th>Recipe Types</th>
-    </tr>
-    <tr>
-        <td th:each="type : ${recipeType}"> <ul>
-            <li th:text="${type}"></li></ul></td>
-    </tr>
-
-</table>
-
 
 </body>
 </html>

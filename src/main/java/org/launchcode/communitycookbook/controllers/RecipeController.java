@@ -37,7 +37,7 @@ public class RecipeController {
     public String index(Model model) {
 
         model.addAttribute("recipes", recipeDao.findAll());
-        model.addAttribute("title", "All Recipes");
+        model.addAttribute("title", "Community Cookbook");
         model.addAttribute("recipeTypes", RecipeType.values());
         model.addAttribute("users", userDao.findAll());
 
