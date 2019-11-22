@@ -8,7 +8,21 @@
 <h1 th:text="${title}"></h1>
 <hr />
 
+<p th:unless="${results} and ${results.size()}">I'm sorry, no recipes match that name</p>
+<hr />
+<form th:action="@{/recipe/search}" method="post">
+    <label th:for="byName">Search by Name of Recipe:</label>
+    <input type="text" id="byName" name="byName" />
+    <input type="submit" value="Find A Recipe" />
+</form>
+<br />
 
-<p>This is where the search features are supposed to go!</p>
+<tr>
+    <th>Recipe Results</th>
+</tr>
+<tr>
+    <td th:each="recipe :  ${results}"> <ul class="index-list">
+        <li><a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a></li></ul></td>
+</tr>
 </body>
 </html>
