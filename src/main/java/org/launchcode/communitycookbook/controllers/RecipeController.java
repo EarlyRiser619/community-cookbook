@@ -46,27 +46,25 @@ public class RecipeController {
         return "recipe/index";
     }
 
-    @RequestMapping(value = "search")
-    public String search(@RequestAttribute @Valid Recipe byName, Model model, Errors errors) {
-        if (errors.hasErrors()) {
+    @RequestMapping(value = "search/{byName}", method = RequestMethod.GET)
+    public String search(@PathVariable ("byName") String byName, Model model, Errors errors) {
+        /*if (errors.hasErrors()) {
             model.addAttribute("title", "Find Recipe");
             model.addAttribute("recipes", recipeDao.findAll());
-            return "recipe/search";
-        }
+            model.addAttribute("errors", errors);
+            return "recipe/search"; } */
 
         List<Recipe> searchByName = new ArrayList<>();
         for (Recipe recipe : recipeDao.findAll()) {
-            if (contains(recipe.getName(), byName.getName())){
+            if (contains(recipe.getName(), byName)) {
                 searchByName.add(recipe);
             }
         }
         model.addAttribute("results", searchByName);
         model.addAttribute("title", "Search Results");
 
-
         return "recipe/search";
-    }
-
+        }
 
 
 
