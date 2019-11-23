@@ -47,14 +47,17 @@ public class RecipeController {
     }
 
     @RequestMapping(value = "search/{byName}", method = RequestMethod.GET)
-    public String searchRecipes(@PathVariable ("byName") String byName, Model model, Errors errors) {
+    public String searchRecipes(@Valid @ModelAttribute ("byName") String byName, Model model, Errors errors) {
         List<Recipe> results = new ArrayList<>();
         for (Recipe recipe : recipeDao.findAll()) {
             if (contains(recipe.getName(), byName)) {
-                results.add(recipe);
+                return "redirect:/recipe/indiv/" + recipe.getId();
+            } else {
+                if (contains(recipe.getType(), byName)) {
+                    results.add(recipe);
+                }
             }
         }
-
         model.addAttribute("results", results);
         model.addAttribute("title", "Search Results");
         return "recipe/results";
@@ -73,17 +76,6 @@ public class RecipeController {
         model.addAttribute("title", "Search Results");
         return "redirect:recipe/searchResults";
     } */
-
-
-    /*@RequestMapping(value = "search/results")
-    public String listSearchResults(Model model) {
-        model.addAttribute("title", "Search Results");
-    }  */
-
-    /*@RequestMapping(value = "search/{recipeId}")
-    public String indivSearchResults(Model model) {
-        model.addAttribute("title", "{Recipe.name}");
-    }  */
 
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
