@@ -10,7 +10,7 @@
 
 <p th:unless="${results} and ${results.size()}">I'm sorry, no recipes match that name</p>
 <hr />
-<form th:action="@{/recipe/search}" method="post">
+<form th:action="@{/recipe/search}" method="get">
     <label th:for="byName">Search by Name of Recipe:</label>
     <input type="text" id="byName" name="byName" />
     <input type="submit" value="Find A Recipe" />

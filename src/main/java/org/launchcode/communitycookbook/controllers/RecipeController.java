@@ -47,25 +47,32 @@ public class RecipeController {
     }
 
     @RequestMapping(value = "search/{byName}", method = RequestMethod.GET)
-    public String search(@PathVariable ("byName") String byName, Model model, Errors errors) {
-        /*if (errors.hasErrors()) {
+    public String searchRecipes(@PathVariable ("byName") String byName, Model model, Errors errors) {
+        List<Recipe> results = new ArrayList<>();
+        for (Recipe recipe : recipeDao.findAll()) {
+            if (contains(recipe.getName(), byName)) {
+                results.add(recipe);
+            }
+        }
+
+        model.addAttribute("results", results);
+        model.addAttribute("title", "Search Results");
+        return "recipe/results";
+        }
+
+    /* @RequestMapping(value = "results", method = RequestMethod.POST)
+    public String results(Model model, @Valid @ModelAttribute List<Recipe> results, Errors errors) {
+        if (errors.hasErrors()) {
             model.addAttribute("title", "Find Recipe");
             model.addAttribute("recipes", recipeDao.findAll());
             model.addAttribute("errors", errors);
-            return "recipe/search"; } */
-
-        List<Recipe> searchByName = new ArrayList<>();
-        for (Recipe recipe : recipeDao.findAll()) {
-            if (contains(recipe.getName(), byName)) {
-                searchByName.add(recipe);
-            }
+            return "recipe/search";
         }
-        model.addAttribute("results", searchByName);
+
+        model.addAttribute("results", results);
         model.addAttribute("title", "Search Results");
-
-        return "recipe/search";
-        }
-
+        return "redirect:recipe/searchResults";
+    } */
 
 
     /*@RequestMapping(value = "search/results")

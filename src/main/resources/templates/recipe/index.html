@@ -17,9 +17,9 @@
 
 <p th:unless="${recipes} and ${recipes.size()}">Would you like to <a href="/recipe/add">add </a> a recipe?</p>
 
-<form action="/recipe/search" method="get">
-    <label for="byName">Search by Name of Recipe:</label>
-    <input type="text" id="byName" name="byName" />
+<form th:action="@{/recipe/search}" method="GET">
+    <label th:for="byName">Search by Name of Recipe:</label>
+    <input type="text" id="byName" th:name="byName" />
     <input type="submit" value="Find A Recipe" />
 </form>
     <br />
