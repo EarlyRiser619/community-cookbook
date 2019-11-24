@@ -8,7 +8,7 @@
 <h1 th:text="${title}"></h1>
 <hr />
 <tr>
-    <td th:each="type : ${recipeTypes}"><a th:href="'/recipe/search/' + ${type}" th:text="${type}"></a></td>
+    <td th:each="type : ${recipeTypes}"><a th:href="'/recipe/search/' + ${type}" th:text="${type} + ' | '"></a></td>
 </tr>
 
 <hr />
@@ -32,25 +32,24 @@
         </ul></td>
     <td th:text="${recipe.source}"></td>
 </tr>
-
-    <ul th:each="ingredient : ${recipe.ingredients}">
+</table>
+<hr />
+<hr />
+<table width="900px">
+<tr>
+    <th>Ingredients:</th>
+    <th>Instructions:</th>
+    <td th:each="ingredient : ${recipe.ingredients}">
+        <ul>
             <li th:text="${ingredient}"></li>
         </ul>
+    </td>
+    <td th:text="${recipe.instructions}"></td>
 </tr>
 </table>
 <hr />
 <hr />
-<ul>
-    <li>Title</li>
-    <li>RecipeType</li>
-    <li>Category(ies)</li>
-    <li>Author Name (link to all recipes by this author)</li>
-    <li>Source</li>
-    <li>Servings</li>
-    <li>Prep time</li>
-    <li>Ingredients</li>
-    <li>Instructions</li>
-</ul>
+
 
 </body>
 </html>

@@ -9,7 +9,7 @@
 <h1 th:text="${title}"></h1>
 <hr />
 <tr>
-    <td th:each="type : ${recipeTypes}"><a th:href="'/recipe/search/' + ${type}" th:text="${type}"></a></td>
+    <td th:each="type : ${recipeTypes}"><a th:href="'/recipe/search/' + ${type}" th:text="${type} + ' | '"></a></td>
 </tr>
 
 <hr />
