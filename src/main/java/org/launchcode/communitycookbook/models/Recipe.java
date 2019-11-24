@@ -48,7 +48,7 @@ public class Recipe {
     public Recipe() {}
 
     public Recipe(String name, User user, String source, RecipeType type, int servings, int time, List<String> ingredients,
-                  String instructions) {
+                  String instructions, Set<Category> categorySet) {
         this.name = name;
         this.user = user;
         this.source = source;
@@ -57,6 +57,7 @@ public class Recipe {
         this.time = time;
         this.ingredients = ingredients;
         this.instructions = instructions;
+        this.categorySet = categorySet;
     }
 
     public int getId() { return id; }
@@ -90,6 +91,8 @@ public class Recipe {
     public void setType(RecipeType type) { this.type = type; }
 
     public Set<Category> getCategories () { return categorySet; }
+
+    public void setCategorySet(Set<Category> categorySet) { this.categorySet = categorySet; }
 
     public List<String> getIngredients() { return ingredients; }
 

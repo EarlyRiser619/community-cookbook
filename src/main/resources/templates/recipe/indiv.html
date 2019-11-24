@@ -6,8 +6,40 @@
 <nav th:replace="fragments :: navigation"></nav>
 <br />
 <h1 th:text="${title}"></h1>
+<hr />
+<tr>
+    <td th:each="type : ${recipeTypes}"><a th:href="'/recipe/search/' + ${type}" th:text="${type}"></a></td>
+</tr>
 
-<p>This is where a specific recipe will be displayed</p><br />
+<hr />
+<table width="1500px">
+<tr>
+    <th>Author:</th>
+    <th>Recipe Type:</th>
+    <th>Servings:</th>
+    <th>Prep Time (in minutes):</th>
+    <th>Special Categories:</th>
+    <th>Source or Origin:</th>
+
+</tr>
+<tr>
+    <td th:text="${recipe.user.name} + ' ' + ${recipe.user.lastName}"></td>
+    <td th:text="${recipe.type.name}"></td>
+    <td th:text="${recipe.servings}"></td>
+    <td th:text="${recipe.time}"></td>
+    <td> <ul th:each="category : ${categories}">
+        <li th:text="${category.name}"></li>
+        </ul></td>
+    <td th:text="${recipe.source}"></td>
+</tr>
+
+    <ul th:each="ingredient : ${recipe.ingredients}">
+            <li th:text="${ingredient}"></li>
+        </ul>
+</tr>
+</table>
+<hr />
+<hr />
 <ul>
     <li>Title</li>
     <li>RecipeType</li>
@@ -19,16 +51,6 @@
     <li>Ingredients</li>
     <li>Instructions</li>
 </ul>
-
-
-    <p th:text="${recipe.name}"></p>
-    <p th:text="${recipe.user.name}"></p>
-    <p th:text="${recipe.type.name}"></p>
-    <ul th:each="ingredient : ${recipe.ingredients}">
-            <li th:text="${ingredient}"></li>
-        </ul>
-</tr>
-</table>
 
 </body>
 </html>

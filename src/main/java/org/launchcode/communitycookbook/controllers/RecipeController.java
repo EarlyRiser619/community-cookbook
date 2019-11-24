@@ -113,6 +113,8 @@ public class RecipeController {
         Recipe recipe = recipeDao.findOne(recipeId);
         model.addAttribute("title", recipe.getName());
         model.addAttribute("recipe", recipe);
+        model.addAttribute("recipeTypes", RecipeType.values());
+        model.addAttribute("categories", recipe.getCategories());
 
         return "recipe/indiv";
     }
