@@ -90,7 +90,7 @@ public class RecipeController {
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddRecipeForm(Model model, @ModelAttribute @Valid Recipe newRecipe,
-                                       HttpServletRequest request, ArrayList<String> ingredients, Errors errors){
+                                       HttpServletRequest request, Errors errors){
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Recipe");
@@ -98,6 +98,11 @@ public class RecipeController {
             model.addAttribute("categories", Category.values());
             model.addAttribute("user", userDao.findAll());
             return "recipe/add";
+        }
+
+        ArrayList<String> ingredients = new ArrayList<>();
+        for (String ingredient : newRecipe.getIngredients()) {
+            newRecipe.addIngredient(ingredient);
         }
 
         User author = userDao.findByEmail(request.getRemoteUser());
@@ -115,6 +120,7 @@ public class RecipeController {
         model.addAttribute("recipe", recipe);
         model.addAttribute("recipeTypes", RecipeType.values());
         model.addAttribute("categories", recipe.getCategories());
+        model.addAttribute("ingredients", recipe.getIngredients());
 
         return "recipe/indiv";
     }
@@ -127,7 +133,7 @@ public class RecipeController {
         List<Recipe> userRecipes = loggedInUser.getUserRecipes();
         model.addAttribute("title", loggedInUser.getName() + "'s Recipes");
         model.addAttribute("user", loggedInUser);
-        model.addAttribute("recipes", loggedInUser.getUserRecipes());
+        model.addAttribute("recipes", userRecipes);
         model.addAttribute("recipeTypes", RecipeType.values());
         return "user/index";
     }

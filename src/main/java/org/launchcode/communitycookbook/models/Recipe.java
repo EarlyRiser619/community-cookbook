@@ -31,17 +31,15 @@ public class Recipe {
 
     private int time;
 
-    /* @OneToMany
-    @JoinColumn(name = "recipe_id")*/
     @ElementCollection
+    @CollectionTable(name = "recipe_ingredients", joinColumns = @JoinColumn(name = "recipe_id"))
+    @Column(name = "ingredients")
     private List<String> ingredients = new ArrayList<>();
 
     private String instructions;
 
     @ElementCollection(targetClass = Category.class)
-    @CollectionTable(name = "recipe_category",
-            joinColumns = @JoinColumn(name = "recipe_id"))
-    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "recipe_category", joinColumns = @JoinColumn(name = "recipe_id"))
     @Column(name = "category_id")
     private Set<Category> categorySet;
 

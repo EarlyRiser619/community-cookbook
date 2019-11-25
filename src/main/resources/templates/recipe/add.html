@@ -69,9 +69,10 @@
     </div>
     <div>
         <label th:for="instructions">Instructions</label>
-        <input type="textbox" th:field="*{instructions}"  required />
+        <input type="text" th:field="*{instructions}"  required />
         <span th:errors="*{instructions}" class="errors"></span>
     </div>
+
 
     <input type="hidden" value="*{user}" name="userId" />
     <input type="submit" value="Add Recipe" />
