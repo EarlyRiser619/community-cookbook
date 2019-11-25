@@ -27,23 +27,20 @@
     <td th:text="${recipe.type.name}"></td>
     <td th:text="${recipe.servings}"></td>
     <td th:text="${recipe.time}"></td>
-    <td> <ul th:each="category : ${categories}">
-        <li th:text="${category.name}"></li>
-        </ul></td>
+    <td>placeholder for categories <ul th:each="category : ${categories}"> <li th:text="${category.name}"></li></ul></td>
     <td th:text="${recipe.source}"></td>
 </tr>
 </table>
 <hr />
 <hr />
-<table width="900px">
+<table width="1000px">
 <tr>
     <th>Ingredients:</th>
     <th>Instructions:</th>
-    <td th:each="ingredient : ${recipe.ingredients}">
-        <ul>
-            <li th:text="${ingredient}"></li>
-        </ul>
-    </td>
+</tr>
+<tr>
+    <td>placeholder for list of ingredients<ul th:each="ingredient : ${recipe.ingredients}"><li th:text="${ingredient}">
+    </li></ul></td>
     <td th:text="${recipe.instructions}"></td>
 </tr>
 </table>
