@@ -32,14 +32,14 @@ public class Recipe {
     private int time;
 
     @ElementCollection
-    @CollectionTable(name = "recipe_ingredients", joinColumns = @JoinColumn(name = "recipe_id"))
+    @CollectionTable(name = "recipe_ingredients", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "ingredients")
     private List<String> ingredients = new ArrayList<>();
 
     private String instructions;
 
     @ElementCollection(targetClass = Category.class)
-    @CollectionTable(name = "recipe_category", joinColumns = @JoinColumn(name = "recipe_id"))
+    @CollectionTable(name = "recipe_category", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "category_id")
     private Set<Category> categorySet;
 

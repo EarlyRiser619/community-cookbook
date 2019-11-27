@@ -46,16 +46,26 @@ public class RecipeController {
         return "recipe/index";
     }
 
+    @RequestMapping(value = "search", method = RequestMethod.GET)
+    public String findByName(@Valid @ModelAttribute String byName, Model model,Errors errors) {
+        List<Recipe> results = new ArrayList<>();
+        for (Recipe recipe : recipeDao.findAll()) {
+            if (contains(recipe.getName(), byName)) {
+                results.add(recipe);
+            }
+        }
+        model.addAttribute("results", results);
+        model.addAttribute("title", "Search Results");
+        return "recipe/results";
+    }
+
+
     @RequestMapping(value = "search/{byName}", method = RequestMethod.GET)
     public String searchRecipes(@Valid @ModelAttribute ("byName") String byName, Model model, Errors errors) {
         List<Recipe> results = new ArrayList<>();
         for (Recipe recipe : recipeDao.findAll()) {
-            if (contains(recipe.getName(), byName)) {
-                return "redirect:/recipe/indiv/" + recipe.getId();
-            } else {
-                if (contains(recipe.getType(), byName)) {
-                    results.add(recipe);
-                }
+            if (contains(recipe.getType(), byName)) {
+                results.add(recipe);
             }
         }
         model.addAttribute("results", results);
