@@ -24,8 +24,8 @@
                     th:value="${recipeType}"></option>
         </select>
     </div>
-    <div th:each="category : ${categories}">
-        <input type="checkbox" th:field="*{categories}" th:value="*{categories}"/>
+    <div th:each="category : ${categories}" name="categoryId">
+        <input type="checkbox" th:field="*{categories}" th:value="${category.id}"/>
         <label th:text="${category.name}">Category</label>
     </div>
     <div>

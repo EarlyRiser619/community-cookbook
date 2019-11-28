@@ -5,9 +5,7 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Recipe {
@@ -32,21 +30,32 @@ public class Recipe {
     private int time;
 
     @ElementCollection
-    @CollectionTable(name = "recipe_ingredients", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "ingredients")
-    private List<String> ingredients = new ArrayList<>();
+    @CollectionTable(name = "recipe_ingredients")
+    private Collection<String> ingredients;
 
     private String instructions;
 
+    //@ElementCollection(targetClass = Category.class)
+    //@CollectionTable(name = "recipe_category", joinColumns= {@JoinColumn(name="recipe_id")})
+    //private Set<Category> categories;
+
+    //@JoinTable(name = "recipe_category", joinColumns = @JoinColumn(name="recipe_id"), inverseJoinColumns = @JoinColumn(name="category_id"))
+    //@Enumerated(EnumType.STRING)
+    //private Category categories;
+
+    //@ManyToMany
+    //private List<Category> categories = new ArrayList<>();
+
     @ElementCollection(targetClass = Category.class)
-    @CollectionTable(name = "recipe_category", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "category_id")
-    private Set<Category> categorySet;
+    @CollectionTable(name = "recipe_category", joinColumns = {@JoinColumn(name = "recipe_id")})
+    @Column(name = "categories", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Collection<Category> categories;
 
     public Recipe() {}
 
-    public Recipe(String name, User user, String source, RecipeType type, int servings, int time, List<String> ingredients,
-                  String instructions, Set<Category> categorySet) {
+    public Recipe(String name, User user, String source, RecipeType type, int servings, int time, Collection<String> ingredients,
+                  String instructions, Collection<Category> categories) {
         this.name = name;
         this.user = user;
         this.source = source;
@@ -55,7 +64,7 @@ public class Recipe {
         this.time = time;
         this.ingredients = ingredients;
         this.instructions = instructions;
-        this.categorySet = categorySet;
+        this.categories = categories;
     }
 
     public int getId() { return id; }
@@ -88,15 +97,15 @@ public class Recipe {
 
     public void setType(RecipeType type) { this.type = type; }
 
-    public Set<Category> getCategories () { return categorySet; }
+    public Collection<Category> getCategories () { return categories; }
 
-    public void setCategorySet(Set<Category> categorySet) { this.categorySet = categorySet; }
+    public void setCategories(Collection<Category> categories) { this.categories = categories; }
 
-    public List<String> getIngredients() { return ingredients; }
+    public Collection<String> getIngredients() { return ingredients; }
 
     public void addIngredient(String ingredient) { this.ingredients.add(ingredient); }
 
-    public void setIngredients(ArrayList<String> ingredients) { this.ingredients = ingredients; }
+    public void setIngredients(Collection<String> ingredients) { this.ingredients = ingredients; }
 
 
 }
