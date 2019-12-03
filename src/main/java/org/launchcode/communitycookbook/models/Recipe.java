@@ -43,19 +43,19 @@ public class Recipe {
     //@Enumerated(EnumType.STRING)
     //private Category categories;
 
-    //@ManyToMany
-    //private List<Category> categories = new ArrayList<>();
+    @ManyToMany
+    private List<Category> categories = new ArrayList<>();
 
-    @ElementCollection(targetClass = Category.class)
-    @CollectionTable(name = "recipe_category", joinColumns = {@JoinColumn(name = "recipe_id")})
-    @Column(name = "categories", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Collection<Category> categories;
+    //@ElementCollection(targetClass = Category.class)
+    //@CollectionTable(name = "recipe_category", joinColumns = {@JoinColumn(name = "recipe_id")})
+    //@Column(name = "categories", nullable = false)
+    //@Enumerated(EnumType.STRING)
+    //private Collection<Category> categories;
 
     public Recipe() {}
 
     public Recipe(String name, User user, String source, RecipeType type, int servings, int time, Collection<String> ingredients,
-                  String instructions, Collection<Category> categories) {
+                  String instructions, List<Category> categories) {
         this.name = name;
         this.user = user;
         this.source = source;
@@ -99,7 +99,7 @@ public class Recipe {
 
     public Collection<Category> getCategories () { return categories; }
 
-    public void setCategories(Collection<Category> categories) { this.categories = categories; }
+    public void setCategories(List<Category> categories) { this.categories = categories; }
 
     public Collection<String> getIngredients() { return ingredients; }
 

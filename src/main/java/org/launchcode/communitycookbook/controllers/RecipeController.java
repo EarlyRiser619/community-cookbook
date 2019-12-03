@@ -4,6 +4,7 @@ import org.launchcode.communitycookbook.models.Category;
 import org.launchcode.communitycookbook.models.Recipe;
 import org.launchcode.communitycookbook.models.RecipeType;
 import org.launchcode.communitycookbook.models.User;
+import org.launchcode.communitycookbook.models.data.CategoryDao;
 import org.launchcode.communitycookbook.models.data.RecipeDao;
 import org.launchcode.communitycookbook.models.data.UserDao;
 import org.launchcode.communitycookbook.security.UserService;
@@ -29,6 +30,9 @@ public class RecipeController {
 
     @Autowired
     private RecipeDao recipeDao;
+
+    @Autowired
+    private CategoryDao categoryDao;
 
     @Autowired
     private UserService userService;
@@ -94,7 +98,7 @@ public class RecipeController {
         model.addAttribute("title", "Add Recipe");
         model.addAttribute(new Recipe());
         model.addAttribute("recipeTypes", RecipeType.values());
-        model.addAttribute("categories", Category.values());
+        model.addAttribute("categories", categoryDao.findAll());
         model.addAttribute("user", userDao.findAll());
         return "recipe/add";
     }
@@ -107,7 +111,7 @@ public class RecipeController {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Recipe");
             model.addAttribute("recipeTypes", RecipeType.values());
-            model.addAttribute("categories", Category.values());
+            model.addAttribute("categories", categoryDao.findAll());
             model.addAttribute("user", userDao.findAll());
             return "recipe/add";
         }

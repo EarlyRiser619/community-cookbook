@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 
-public enum Category {
+public class Category {
 
-    GLUTENFREE (1,"Gluten-Free"),
+   /* GLUTENFREE (1,"Gluten-Free"),
     VEGETARIAN (2,"Vegetarian"),
     VEGAN (3,"Vegan"),
     LOWSODIUM (4,"Low Sodium");
@@ -36,11 +36,11 @@ public enum Category {
     public static Category getById(int id){
         return byId.get(id);
     }
+*/
 
 
 
-
-    /* If Category ever changes back into a class...
+    /* If Category ever changes back into a class... */
 
     @Id
     @GeneratedValue
@@ -51,7 +51,7 @@ public enum Category {
     private String name;
 
     @ManyToMany(mappedBy= "categories")
-    private List<Recipe> recipes = new ArrayList<>();
+    private List<Recipe> recipes;
 
     public void addRecipe(Recipe recipe) { recipes.add(recipe); }
 
@@ -65,5 +65,5 @@ public enum Category {
 
     public void setName(String name) { this.name = name; }
 
-    public List<Recipe> getRecipes() { return recipes; } */
+    public List<Recipe> getRecipes() { return recipes; }
 }

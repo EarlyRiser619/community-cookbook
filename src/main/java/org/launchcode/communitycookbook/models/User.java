@@ -41,8 +41,8 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
     @OneToMany
-    @JoinTable(name = "user_recipes", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="recipe_id"))
-    private List<Recipe> userRecipes;
+    @JoinColumn(name = "user_recipes")
+    private List<Recipe> userRecipes = new ArrayList<>();
 
     public List<Recipe> getRecipes() { return userRecipes; }
 
