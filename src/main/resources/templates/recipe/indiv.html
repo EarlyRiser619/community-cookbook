@@ -27,7 +27,7 @@
     <td th:text="${recipe.type.name}"></td>
     <td th:text="${recipe.servings}"></td>
     <td th:text="${recipe.time}"></td>
-    <td>placeholder for categories <ul th:each="category : ${categories}"> <li th:text="${category.name}"></li></ul></td>
+    <td th:text="${category.name}"></td>
     <td th:text="${recipe.source}"></td>
 </tr>
 </table>

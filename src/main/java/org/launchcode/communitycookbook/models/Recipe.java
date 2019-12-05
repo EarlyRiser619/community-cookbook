@@ -30,8 +30,8 @@ public class Recipe {
     private int time;
 
     @ElementCollection
-    @CollectionTable(name = "recipe_ingredients")
-    private Collection<String> ingredients;
+    //@CollectionTable(name = "recipe_ingredients")
+    private List<String> ingredients = new ArrayList<>();
 
     private String instructions;
 
@@ -39,12 +39,11 @@ public class Recipe {
     //@CollectionTable(name = "recipe_category", joinColumns= {@JoinColumn(name="recipe_id")})
     //private Set<Category> categories;
 
-    //@JoinTable(name = "recipe_category", joinColumns = @JoinColumn(name="recipe_id"), inverseJoinColumns = @JoinColumn(name="category_id"))
     //@Enumerated(EnumType.STRING)
-    //private Category categories;
+    private Category categories;
 
-    @ManyToMany
-    private List<Category> categories = new ArrayList<>();
+    //@ManyToMany
+    //private List<Category> categories = new ArrayList<>();
 
     //@ElementCollection(targetClass = Category.class)
     //@CollectionTable(name = "recipe_category", joinColumns = {@JoinColumn(name = "recipe_id")})
@@ -54,8 +53,8 @@ public class Recipe {
 
     public Recipe() {}
 
-    public Recipe(String name, User user, String source, RecipeType type, int servings, int time, Collection<String> ingredients,
-                  String instructions, List<Category> categories) {
+    public Recipe(String name, User user, String source, RecipeType type, int servings, int time, List<String> ingredients,
+                  String instructions, Category categories) {
         this.name = name;
         this.user = user;
         this.source = source;
@@ -97,15 +96,17 @@ public class Recipe {
 
     public void setType(RecipeType type) { this.type = type; }
 
-    public Collection<Category> getCategories () { return categories; }
+    public Category getCategories () { return categories; }
 
-    public void setCategories(List<Category> categories) { this.categories = categories; }
+    //public void addCategory(Category category) { this.categories.add(category); }
 
-    public Collection<String> getIngredients() { return ingredients; }
+    public void setCategories(Category categories) { this.categories = categories; }
+
+    public List<String> getIngredients() { return ingredients; }
 
     public void addIngredient(String ingredient) { this.ingredients.add(ingredient); }
 
-    public void setIngredients(Collection<String> ingredients) { this.ingredients = ingredients; }
+    public void setIngredients(ArrayList<String> ingredients) { this.ingredients = ingredients; }
 
 
 }

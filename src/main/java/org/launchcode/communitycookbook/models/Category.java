@@ -9,38 +9,50 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+public enum Category {
 
-public class Category {
-
-   /* GLUTENFREE (1,"Gluten-Free"),
-    VEGETARIAN (2,"Vegetarian"),
-    VEGAN (3,"Vegan"),
-    LOWSODIUM (4,"Low Sodium");
+    GLUTENFREE( "Gluten-Free"),
+    VEGETARIAN("Vegetarian"),
+    VEGAN( "Vegan"),
+    LOWSODIUM( "Low Sodium"),
+    NONE( "None");
 
     private final String name;
 
-    @Column(name = "category_id")
-    private final int id;
+    //@Column(name = "category_id")
+    //private final int id;
 
-    private static final Map<Integer, Category> byId = new HashMap<Integer, Category>();
+    //private static final Map<Integer, Category> byId = new HashMap<Integer, Category>();
 
     //@ManyToMany(mappedBy = "categories")
     //private List<Recipe> recipes;
 
-    Category(int id, String name) { this.name = name; this.id = id; }
+    //Category(int id, String name) {
+    //    this.name = name;
+    //    this.id = id;
+    //}
 
-    public String getName() { return name; }
-
-    public int getId() { return id; }
-
-    public static Category getById(int id){
-        return byId.get(id);
+    Category(String name) {
+        this.name = name;
     }
-*/
+
+    public String getName() {
+        return name;
+    }
+
+    /*public int getId() {
+        return id;
+    }
+
+    public static Category getById(int id) {
+        return byId.get(id);
+    } */
+}
 
 
 
-    /* If Category ever changes back into a class... */
+
+    /* If Category ever changes back into a class...
 
     @Id
     @GeneratedValue
@@ -66,4 +78,4 @@ public class Category {
     public void setName(String name) { this.name = name; }
 
     public List<Recipe> getRecipes() { return recipes; }
-}
+} */

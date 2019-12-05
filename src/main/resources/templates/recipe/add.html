@@ -24,10 +24,26 @@
                     th:value="${recipeType}"></option>
         </select>
     </div>
-    <div th:each="category : ${categories}" name="categoryId">
-        <input type="checkbox" th:field="*{categories}" th:value="${category.id}"/>
-        <label th:text="${category.name}">Category</label>
+    <!--<div>
+        <label th:for="categories">Would you like to add a category for your recipe?</label>
+        <input th:field="*{categories}" type="text" id="catVal" />
+        <button onClick="addLi(); return false;">Add Category</button>
+        <span th:errors="*{categories}" class="errors"></span>
+    </div> -->
+    <div>
+        <label th:for="category">Category</label>
+        <select th:field="*{categories}" required>
+            <option value="" hidden>Select a Category</option>
+            <option th:each="category : ${categories}"
+                    th:text="${category.name}"
+                    th:value="${category}"></option>
+        </select>
     </div>
+
+    <!-- <div th:each="category : ${categories}" name="categoryId" />
+        <input type="checkbox" th:field="*{categories}" />
+        <label th:text="${category.name}">Category</label>
+    </div>-->
     <div>
         <label th:for="source">Source</label>
         <input th:field="*{source}" />
