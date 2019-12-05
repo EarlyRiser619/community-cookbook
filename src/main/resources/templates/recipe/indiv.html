@@ -36,11 +36,20 @@
 <table width="1000px">
 <tr>
     <th>Ingredients:</th>
+</tr>
+<tr th:if="${ingredients.empty}">
+    <td colspan="2">No Ingredients</td></tr>
+    <tr th:each="ingredient : ${ingredients}">
+        <td><span th:text="${ingredient.name}">Ingredient</span></td>
+    <!--<td>placeholder for list of ingredients<ul th:each="ingredient : ${recipe.ingredients}"><li th:text="${ingredient}">
+    </li></ul></td>
+     -->
+</tr>
+</table>
+<tr>
     <th>Instructions:</th>
 </tr>
 <tr>
-    <td>placeholder for list of ingredients<ul th:each="ingredient : ${recipe.ingredients}"><li th:text="${ingredient}">
-    </li></ul></td>
     <td th:text="${recipe.instructions}"></td>
 </tr>
 </table>
