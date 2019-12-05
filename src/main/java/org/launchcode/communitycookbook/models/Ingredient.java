@@ -1,4 +1,4 @@
-/* package org.launchcode.communitycookbook.models;
+package org.launchcode.communitycookbook.models;
 
 import com.sun.istack.NotNull;
 
@@ -18,14 +18,18 @@ public class Ingredient {
     @Size(min=3, max=30)
     private String name;
 
-    @ManyToOne
-    private Recipe recipe;
+    //@ManyToOne
+    //private Recipe recipe;
 
     public Ingredient() {}
 
-    public Ingredient(String name, Recipe recipe){
+    /*public Ingredient(String name, Recipe recipe){
         this.name = name;
         this.recipe = recipe;
+    } */
+
+    public Ingredient(String name) {
+        this.name = name;
     }
 
     public int getId() { return id; }
@@ -34,8 +38,7 @@ public class Ingredient {
 
     public void setName(String name) { this.name = name; }
 
-    public Recipe getRecipe() { return recipe; }
+    //public Recipe getRecipe() { return recipe; }
 
-    public void setRecipe(Recipe recipe) { this.recipe = recipe; }
+    //public void setRecipe(Recipe recipe) { this.recipe = recipe; }
 }
-*/
