@@ -76,6 +76,19 @@ public class RecipeController {
         return "recipe/results";
         }
 
+    @RequestMapping(value = "userSearch/{byUser}", method = RequestMethod.GET)
+    public String searchUserRecipes(@Valid @ModelAttribute ("byUser") String byUser, Model model, Errors errors) {
+        List<Recipe> results = new ArrayList<>();
+        for (Recipe recipe : recipeDao.findAll()) {
+            if (contains(recipe.getUser(), byUser)) {
+                results.add(recipe);
+            }
+        }
+        model.addAttribute("results", results);
+        model.addAttribute("title", "Search Results");
+        return "recipe/results";
+    }
+
     /* @RequestMapping(value = "results", method = RequestMethod.POST)
     public String results(Model model, @Valid @ModelAttribute List<Recipe> results, Errors errors) {
         if (errors.hasErrors()) {

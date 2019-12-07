@@ -4,7 +4,7 @@
 <head th:replace="fragments :: head"></head>
 <body>
 <nav th:replace="fragments :: navigation"></nav><br />
-<img src="Images/cookbook1.jpg" alt="cooking utensils and bowls" height="200">
+<img src="../Images/cookbook1.jpg" alt="cooking utensils and bowls" height="200">
 <br />
 <h1 th:text="${title}"></h1>
 <hr />
@@ -34,7 +34,7 @@
 
     <br />
 
-<form th:action="@{/recipe/userSearch}" method="post">
+<form th:action="@{/recipe/userSearch}" method="GET">
     <label th:for="byUser">Search by Name of Author:</label>
     <input type="text" id="byUser" name="byUser" />
     <input type="submit" value="Find An Author" />
@@ -45,7 +45,7 @@
     </tr>
     <tr>
         <td th:each="user : ${users}"> <ul class="index-list">
-            <li th:text="${user.name}"></li></ul></td>
+            <li><a th:href="'/recipe/indiv/' + ${user.id}" th:text="${user.name}"></a></li></ul></td>
     </tr>
 
 </body>
