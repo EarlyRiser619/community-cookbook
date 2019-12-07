@@ -59,7 +59,34 @@
         <input th:field="*{time}" />
         <span th:errors="*{time}" class="errors"></span>
     </div>
-    <div>
+    <table>
+        <thead>
+            <tr>
+                <!--<th th:text="#{recipe.ingredients.id}">Item</th>-->
+                <th> <!--th:text="#{recipe.ingredients.measurement}"-->Measurement</th>
+                <th> <!--th:text="#{recipe.ingredients.name}"-->Ingredient</th>
+                <th>
+                    <button type="submit" name="addIngredient" th:value="#{recipe.ingredient.add}"> <!--th:text="#{recipe.ingredient.add}"-->Add Ingredient</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ingredient,ingredientStat : *{ingredients}">
+            <!--<td th:text="${ingredientStat.count}"></td>-->
+            <td>
+                <input type="text" th:field="*{ingredients[__${ingredientStat.index}__].measurement}" />
+            </td>
+            <td>
+                <input type="text" th:field="*{ingredients[__${ingredientStat.index}__].name}" />
+            </td>
+            <td>
+                <button type="submit" name="removeIngredient"
+                        th:value="${ingredientStat.index}" th:text="#{recipe.ingredient.remove}">Remove Ingredient</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <!--<div>
         <label th:for="ingredients">Ingredients</label>
         <input th:field="*{ingredients}" type="text" id="txtVal" />
         <button onclick="addLi(); return false;">Add Ingredient</button>
@@ -82,7 +109,7 @@
                 txtDoc.focus();
              }
         </script>
-    </div>
+    </div>-->
     <div>
         <label th:for="instructions">Instructions</label>
         <input type="text" th:field="*{instructions}"  required />

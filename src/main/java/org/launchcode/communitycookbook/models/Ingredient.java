@@ -18,8 +18,10 @@ public class Ingredient {
     @Size(min=3, max=30)
     private String name;
 
-    //@ManyToOne
-    //private Recipe recipe;
+    private String measurement;
+
+    @ManyToOne
+    private Recipe recipe_ingredients;
 
     public Ingredient() {}
 
@@ -28,8 +30,9 @@ public class Ingredient {
         this.recipe = recipe;
     } */
 
-    public Ingredient(String name) {
+    public Ingredient(String name, String measurement) {
         this.name = name;
+        this.measurement = measurement;
     }
 
     public int getId() { return id; }
@@ -38,7 +41,11 @@ public class Ingredient {
 
     public void setName(String name) { this.name = name; }
 
-    //public Recipe getRecipe() { return recipe; }
+    public String getMeasurement() { return measurement; }
 
-    //public void setRecipe(Recipe recipe) { this.recipe = recipe; }
+    public void setMeasurement(String measurement) { this.measurement = measurement; }
+
+    public Recipe getRecipe() { return recipe_ingredients; }
+
+    public void setRecipe(Recipe recipe_ingredients) { this.recipe_ingredients = recipe_ingredients; }
 }

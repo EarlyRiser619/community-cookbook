@@ -1,9 +1,6 @@
 package org.launchcode.communitycookbook.controllers;
 
-import org.launchcode.communitycookbook.models.Category;
-import org.launchcode.communitycookbook.models.Recipe;
-import org.launchcode.communitycookbook.models.RecipeType;
-import org.launchcode.communitycookbook.models.User;
+import org.launchcode.communitycookbook.models.*;
 import org.launchcode.communitycookbook.models.data.IngredientDao;
 import org.launchcode.communitycookbook.models.data.RecipeDao;
 import org.launchcode.communitycookbook.models.data.UserDao;
@@ -46,6 +43,7 @@ public class RecipeController {
         model.addAttribute("recipes", recipeDao.findAll());
         model.addAttribute("title", "Community Cookbook");
         model.addAttribute("recipeTypes", RecipeType.values());
+        model.addAttribute("ingredients", ingredientDao.findAll());
         model.addAttribute("users", userDao.findAll());
 
         return "recipe/index";
@@ -60,7 +58,7 @@ public class RecipeController {
             }
         }
         model.addAttribute("results", results);
-        model.addAttribute("title", "Search Results");
+        model.addAttribute("title", "Search for a Favorite Recipe or Author");
         return "recipe/results";
     }
 
@@ -95,6 +93,8 @@ public class RecipeController {
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddRecipeForm(Model model) {
+
+
         model.addAttribute("title", "Add Recipe");
         model.addAttribute(new Recipe());
         model.addAttribute("recipeTypes", RecipeType.values());
@@ -129,6 +129,24 @@ public class RecipeController {
         //newRecipe.setIngredients(ingredients);
         recipeDao.save(newRecipe);
         return "redirect:/recipe/indiv/" + newRecipe.getId();
+    }
+
+    @RequestMapping(value = "add", params={"addIngredient"})
+    public String addIngredient(Model model, Recipe newRecipe, BindingResult bindingResult) {
+        model.addAttribute("recipeTypes", RecipeType.values());
+        model.addAttribute("categories", Category.values());
+        model.addAttribute("ingredients", ingredientDao.findAll());
+        model.addAttribute("user", userDao.findAll());
+        newRecipe.getIngredients().add(new Ingredient());
+        return "recipe/add";
+    }
+
+    @RequestMapping(value = "add", params={"removeIngredient"})
+    public String removeIngredient(Model model, Recipe newRecipe, BindingResult bindingResult, HttpServletRequest req) {
+        model.addAttribute("ingredients", ingredientDao.findAll());
+        Integer ingredientId = Integer.valueOf(req.getParameter("removeIngredient"));
+        newRecipe.getIngredients().remove(ingredientId.intValue());
+        return "recipe/add";
     }
 
 

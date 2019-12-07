@@ -29,9 +29,10 @@ public class Recipe {
 
     private int time;
 
-    @ElementCollection
-    //@CollectionTable(name = "recipe_ingredients")
-    private List<String> ingredients = new ArrayList<>();
+    //@ElementCollection
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name = "recipe_ingredients")
+    private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 
     private String instructions;
 
@@ -53,7 +54,7 @@ public class Recipe {
 
     public Recipe() {}
 
-    public Recipe(String name, User user, String source, RecipeType type, int servings, int time, List<String> ingredients,
+    public Recipe(String name, User user, String source, RecipeType type, int servings, int time, List<Ingredient> ingredients,
                   String instructions, Category categories) {
         this.name = name;
         this.user = user;
@@ -102,11 +103,11 @@ public class Recipe {
 
     public void setCategories(Category categories) { this.categories = categories; }
 
-    public List<String> getIngredients() { return ingredients; }
+    public List<Ingredient> getIngredients() { return ingredients; }
 
-    public void addIngredient(String ingredient) { this.ingredients.add(ingredient); }
+    public void addIngredient(Ingredient ingredient) { this.ingredients.add(ingredient); }
 
-    public void setIngredients(ArrayList<String> ingredients) { this.ingredients = ingredients; }
+    public void setIngredients(ArrayList<Ingredient> ingredients) { this.ingredients = ingredients; }
 
 
 }
