@@ -149,6 +149,24 @@ public class RecipeController {
         return "recipe/add";
     }
 
+    @RequestMapping(value = "add", params={"addStep"})
+    public String addInstruction(Model model, Recipe newRecipe, BindingResult bindingResult) {
+        model.addAttribute("recipeTypes", RecipeType.values());
+        model.addAttribute("categories", Category.values());
+        model.addAttribute("ingredients", ingredientDao.findAll());
+        model.addAttribute("user", userDao.findAll());
+        newRecipe.getInstructions().add("addStep");
+        return "recipe/add";
+    }
+
+    @RequestMapping(value = "add", params={"removeStep"})
+    public String removeStep(Model model, Recipe newRecipe, BindingResult bindingResult, HttpServletRequest req) {
+        model.addAttribute("instructions", newRecipe.getInstructions());
+        Integer stepId = Integer.valueOf(req.getParameter("removeIngredient"));
+        newRecipe.getInstructions().remove(stepId.intValue());
+        return "recipe/add";
+    }
+
 
     @RequestMapping(value = "indiv/{recipeId}")
     public String displayIndivRecipe(@Valid @ModelAttribute("recipeId") int recipeId, Model model, Errors errors){

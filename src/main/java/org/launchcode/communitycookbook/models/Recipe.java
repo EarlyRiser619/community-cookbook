@@ -34,7 +34,9 @@ public class Recipe {
     @JoinColumn(name = "recipe_ingredients")
     private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 
-    private String instructions;
+    @ElementCollection
+    @CollectionTable(name = "instructions")
+    private List<String> instructions = new ArrayList<>();
 
     //@ElementCollection(targetClass = Category.class)
     //@CollectionTable(name = "recipe_category", joinColumns= {@JoinColumn(name="recipe_id")})
@@ -55,7 +57,7 @@ public class Recipe {
     public Recipe() {}
 
     public Recipe(String name, User user, String source, RecipeType type, int servings, int time, List<Ingredient> ingredients,
-                  String instructions, Category categories) {
+                  List<String> instructions, Category categories) {
         this.name = name;
         this.user = user;
         this.source = source;
@@ -89,9 +91,11 @@ public class Recipe {
 
     public void setTime(int time) { this.time = time; }
 
-    public String getInstructions() { return instructions; }
+    public List<String> getInstructions() { return instructions; }
 
-    public void setInstructions(String instructions) { this.instructions = instructions; }
+    public void setInstructions(List<String> instructions) { this.instructions = instructions; }
+
+    public void addInstructions(String instruction) { this.instructions.add(instruction); }
 
     public RecipeType getType() { return type; }
 

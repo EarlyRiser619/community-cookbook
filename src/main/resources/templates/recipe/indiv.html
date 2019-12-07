@@ -50,9 +50,14 @@
 <tr>
     <th>Instructions:</th>
 </tr>
-<tr>
-    <td th:text="${recipe.instructions}"></td>
-</tr>
+<tr th:unless="${recipe.instructions} and ${recipe.instructions.size()}" >
+    <td colspan="2">Wing it! There are no instructions!</td></tr>
+    <tr>
+        <td>
+            <ul th:each="instruction : ${recipe.instructions}">
+                <li th:text="${instruction}">Wing it!</li></ul>
+        </td>
+    </tr>
 </table>
 <hr />
 <hr />

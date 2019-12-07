@@ -63,8 +63,8 @@
         <thead>
             <tr>
                 <!--<th th:text="#{recipe.ingredients.id}">Item</th>-->
-                <th> <!--th:text="#{recipe.ingredients.measurement}"-->Measurement</th>
-                <th> <!--th:text="#{recipe.ingredients.name}"-->Ingredient</th>
+                <th> <!--th:text="#{recipe.ingredients.measurement}"-->Measurement   </th>
+                <th> <!--th:text="#{recipe.ingredients.name}"-->  Ingredient</th>
                 <th>
                     <button type="submit" name="addIngredient" th:value="#{recipe.ingredient.add}"> <!--th:text="#{recipe.ingredient.add}"-->Add Ingredient</button>
                 </th>
@@ -110,11 +110,32 @@
              }
         </script>
     </div>-->
-    <div>
+    <table>
+        <thead>
+            <tr>
+                <th>Instructions</th>
+                <th>
+                    <button type="submit" name="addStep" th:value="#{recipe.instructions.add}">Add Step</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:each="step,stepStat : *{instructions}">
+            <td>
+                <input type="text" th:field="*{instructions[__${stepStat.index}__]}" />
+            </td>
+            <td>
+                <button type="submit" name="removeStep"
+                        th:value="${stepStat.index}" th:text="#{recipe.instructions.remove}">Remove Ingredient</button>
+            </td>
+        </tbody>
+    </table>
+
+    <!--<div>
         <label th:for="instructions">Instructions</label>
         <input type="text" th:field="*{instructions}"  required />
         <span th:errors="*{instructions}" class="errors"></span>
-    </div>
+    </div>-->
 
 
     <input type="hidden" value="*{user}" name="userId" />
