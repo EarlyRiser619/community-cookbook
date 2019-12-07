@@ -39,13 +39,17 @@
 </tr>
 <tr th:if="${ingredients.empty}">
     <td colspan="2">No Ingredients</td></tr>
-    <tr th:each="ingredient : ${ingredients}">
-        <td><span th:text="${ingredient.name}">Ingredient</span></td>
+    <tr>
+        <td>
+            <ul th:each="ingredient : ${ingredients}">
+                <li th:text="${ingredient.name}">Ingredient</li></ul></td>
     <!--<td>placeholder for list of ingredients<ul th:each="ingredient : ${recipe.ingredients}"><li th:text="${ingredient}">
     </li></ul></td>
      -->
 </tr>
 </table>
+<hr />
+<hr />
 <table>
 <tr>
     <th>Instructions:</th>
