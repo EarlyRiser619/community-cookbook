@@ -31,12 +31,18 @@
 </tr>
 <hr />
 <hr />
+<form th:action="@{/recipe/search}" method="GET">
+    <label th:for="byName">Search by Name of Recipe:</label>
+    <input type="text" id="byName" th:name="byName" />
+    <input type="submit" value="Find A Recipe" />
+</form>
+<br />
 
 <tr>
     <th>All Recipes</th>
 </tr>
 <tr>
-    <td th:each="recipe :  ${allRecipes}"> <ul class="index-list">
+    <td> <ul class="index-list" th:each="recipe :  ${allRecipes}">
         <li><a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a></li></ul></td>
 </tr>
 </body>
