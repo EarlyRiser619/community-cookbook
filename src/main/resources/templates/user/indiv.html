@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments :: head"></head>
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+<br />
+<h1 th:text="${title}"></h1>
+<hr />
+<tr>
+    <td th:each="type : ${recipeTypes}"><a th:href="'/recipe/search/' + ${type}" th:text="${type} + ' | '"></a></td>
+</tr>
+
+<hr />
+
+<h2 th:text="${title}"></h2>
+
+<hr />
+<tr>
+    <th th:text="${user.name} + ' ' + ${user.lastName} + '\'s Recipes:'">
+
+    </th>
+</tr>
+<tr>
+    <td class="index-list">
+        <ul th:each="recipe :  ${user.userRecipes}">
+            <li><a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a></li></ul></td>
+</tr>
+
+</body>
+</html>

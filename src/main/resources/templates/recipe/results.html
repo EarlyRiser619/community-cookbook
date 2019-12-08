@@ -29,5 +29,22 @@
     <td th:each="recipe :  ${results}"> <ul class="index-list">
         <li><a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a></li></ul></td>
 </tr>
+
+<hr />
+<hr />
+
+<form th:action="@{/recipe/userSearch}" method="GET">
+    <label th:for="byUser">Search by Name of Author:</label>
+    <input type="text" id="byUser" name="byUser" />
+    <input type="submit" value="Find An Author" />
+</form>
+
+<tr>
+    <th>All Authors</th>
+</tr>
+<tr>
+    <td th:each="user : ${allUsers}"> <ul class="index-list">
+        <li><a th:href="'/recipe/indivUser/' + ${user.id}" th:text="${user.name}"></a></li></ul></td>
+</tr>
 </body>
 </html>

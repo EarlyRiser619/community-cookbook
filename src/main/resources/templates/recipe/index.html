@@ -34,7 +34,7 @@
 
     <br />
 
-<form th:action="@{/recipe/userSearch}" method="GET">
+<form th:action="@{/recipe/findAuthor}" method="GET">
     <label th:for="byUser">Search by Name of Author:</label>
     <input type="text" id="byUser" name="byUser" />
     <input type="submit" value="Find An Author" />
@@ -45,7 +45,7 @@
     </tr>
     <tr>
         <td th:each="user : ${users}"> <ul class="index-list">
-            <li><a th:href="'/recipe/indiv/' + ${user.id}" th:text="${user.name}"></a></li></ul></td>
+            <li><a th:href="'/recipe/user/indiv/' + ${user.id}" th:text="${user.name}"></a></li></ul></td>
     </tr>
 
 </body>

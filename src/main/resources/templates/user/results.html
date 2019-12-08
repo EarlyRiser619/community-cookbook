@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments :: head"></head>
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+<br />
+<h1 th:text="${title}"></h1>
+<hr />
+<tr>
+    <td th:each="type : ${recipeTypes}"><a th:href="'/recipe/search/' + ${type}" th:text="${type} + ' | '"></a></td>
+</tr>
+
+<hr />
+
+<p th:unless="${results} and ${results.size()}">I'm sorry, no users match that name</p>
+<hr />
+
+<form th:action="@{/recipe/userSearch}" method="GET">
+    <label th:for="byUser">Search by Name of Author:</label>
+    <input type="text" id="byUser" name="byUser" />
+    <input type="submit" value="Find An Author" />
+</form>
+
+<tr>
+    <th>Author Results</th>
+</tr>
+<tr>
+    <td th:each="user : ${results}"> <ul class="index-list">
+        <li><a th:href="'/recipe/user/indiv/' + ${user.id}" th:text="${user.name}"></a></li></ul></td>
+</tr>
+<hr />
+<hr />
+
+<tr>
+    <th>All Recipes</th>
+</tr>
+<tr>
+    <td th:each="recipe :  ${allRecipes}"> <ul class="index-list">
+        <li><a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a></li></ul></td>
+</tr>
+</body>
+</html>
