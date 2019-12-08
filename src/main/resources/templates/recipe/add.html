@@ -63,8 +63,8 @@
         <thead>
             <tr>
                 <!--<th th:text="#{recipe.ingredients.id}">Item</th>-->
-                <th> <!--th:text="#{recipe.ingredients.measurement}"-->Measurement   </th>
-                <th> <!--th:text="#{recipe.ingredients.name}"-->  Ingredient</th>
+                <th> <!--th:text="#{recipe.ingredients.measurement}"-->Measurement </th>
+                <th> <!--th:text="#{recipe.ingredients.name}"--> Ingredient</th>
                 <th>
                     <button type="submit" name="addIngredient" th:value="#{recipe.ingredient.add}"> <!--th:text="#{recipe.ingredient.add}"-->Add Ingredient</button>
                 </th>
@@ -81,7 +81,7 @@
             </td>
             <td>
                 <button type="submit" name="removeIngredient"
-                        th:value="${ingredientStat.index}" th:text="#{recipe.ingredient.remove}">Remove Ingredient</button>
+                        th:value="${ingredientStat.index}"> <!--th:value="#{recipe.ingredient.remove}"-->Remove Ingredient</button>
             </td>
         </tr>
         </tbody>
@@ -126,7 +126,7 @@
             </td>
             <td>
                 <button type="submit" name="removeStep"
-                        th:value="${stepStat.index}" th:text="#{recipe.instructions.remove}">Remove Ingredient</button>
+                        th:value="${stepStat.index}"> <!--th:text="#{recipe.instructions.remove}"-->Remove Step</button>
             </td>
         </tbody>
     </table>

@@ -58,8 +58,8 @@
     <td colspan="2">Wing it! There are no instructions!</td></tr>
     <tr>
         <td>
-            <ul th:each="instruction : ${recipe.instructions}">
-                <li th:text="${instruction}">Wing it!</li></ul>
+            <ol th:each="instruction : ${recipe.instructions}">
+                <li th:text="${instruction}">Wing it!</li></ol>
         </td>
     </tr>
 </table>

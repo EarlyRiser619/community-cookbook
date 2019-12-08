@@ -51,15 +51,20 @@ public class RecipeController {
 
     @RequestMapping(value = "search", method = RequestMethod.GET)
     public String findByName(@Valid @ModelAttribute String byName, Model model,Errors errors) {
-        List<Recipe> results = new ArrayList<>();
-        for (Recipe recipe : recipeDao.findAll()) {
-            if (contains(recipe.getName(), byName)) {
-                results.add(recipe);
-            }
+        if(errors.hasErrors()) {
+            model.addAttribute("title", "Search for a Favorite Recipe");
+            model.addAttribute("authors", userDao.findAll());
+            return "recipe/search";
         }
+        List<Recipe> results = new ArrayList<>();
+        for(Recipe recipe : recipeDao.findAll()) {
+            if(contains(recipe.getName(), byName)) {
+                results.add(recipe);
+            } else return "recipe/results";
+        }
+
         model.addAttribute("results", results);
         model.addAttribute("title", "Search for a Favorite Recipe");
-        model.addAttribute("recipes", recipeDao.findAll());
         model.addAttribute("authors", userDao.findAll());
         return "recipe/results";
 
@@ -67,6 +72,11 @@ public class RecipeController {
 
     @RequestMapping(value = "findAuthor", method = RequestMethod.GET)
     public String findByUser(@Valid @ModelAttribute String byUser, Model model,Errors errors) {
+        if(errors.hasErrors()) {
+            model.addAttribute("title", "Author Search Results");
+            model.addAttribute("recipes", recipeDao.findAll());
+            return "recipe/findAuthor";
+        }
         List<User> results = new ArrayList<>();
         for (User user : userDao.findAll()) {
             if (contains(user.getName(), byUser)) {
@@ -83,6 +93,11 @@ public class RecipeController {
 
     @RequestMapping(value = "search/{byName}", method = RequestMethod.GET)
     public String searchRecipes(@Valid @ModelAttribute ("byName") String byName, Model model, Errors errors) {
+        if(errors.hasErrors()) {
+            model.addAttribute("title", "Recipe Search Results");
+            model.addAttribute("authors", userDao.findAll());
+            return "recipe/search";
+        }
         List<Recipe> results = new ArrayList<>();
         for (Recipe recipe : recipeDao.findAll()) {
             if (contains(recipe.getType(), byName)) {
@@ -181,6 +196,8 @@ public class RecipeController {
         model.addAttribute("ingredients", ingredientDao.findAll());
         Integer ingredientId = Integer.valueOf(req.getParameter("removeIngredient"));
         newRecipe.getIngredients().remove(ingredientId.intValue());
+        model.addAttribute("recipeTypes", RecipeType.values());
+        model.addAttribute("categories", Category.values());
         return "recipe/add";
     }
 
@@ -199,6 +216,8 @@ public class RecipeController {
         model.addAttribute("instructions", newRecipe.getInstructions());
         Integer stepId = Integer.valueOf(req.getParameter("removeIngredient"));
         newRecipe.getInstructions().remove(stepId.intValue());
+        model.addAttribute("recipeTypes", RecipeType.values());
+        model.addAttribute("categories", Category.values());
         return "recipe/add";
     }
 
