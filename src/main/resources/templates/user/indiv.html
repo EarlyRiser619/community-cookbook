@@ -13,7 +13,7 @@
 
 <hr />
 
-<h2 th:text="${title}"></h2>
+<h2 th:text="${user.name} + ' ' + ${user.lastName}"></h2>
 
 <hr />
 <tr>
@@ -23,7 +23,7 @@
 </tr>
 <tr>
     <td class="index-list">
-        <ul th:each="recipe :  ${user.userRecipes}">
+        <ul th:each="recipe :  ${recipes}">
             <li><a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a></li></ul></td>
 </tr>
 

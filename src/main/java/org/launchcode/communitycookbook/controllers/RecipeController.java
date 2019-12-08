@@ -215,8 +215,9 @@ public class RecipeController {
     @RequestMapping(value = "user/indiv/{userId}")
     public String displayUserSearch(@Valid @ModelAttribute("userId") int userId, Model model, Errors errors){
         User user = userDao.findOne(userId);
-        model.addAttribute("title", user.getName() + user.getLastName());
-        model.addAttribute("recipes", user.getUserRecipes());
+        List<Recipe> recipes = user.getUserRecipes();
+        model.addAttribute("title", "Author Results");
+        model.addAttribute("recipes", recipes);
         model.addAttribute("recipeTypes", RecipeType.values());
         model.addAttribute("user", user);
 
