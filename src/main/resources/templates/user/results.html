@@ -42,7 +42,7 @@
     <th>All Recipes</th>
 </tr>
 <tr>
-    <td> <ul class="index-list" th:each="recipe :  ${allRecipes}">
+    <td> <ul class="index-list" th:each="recipe :  ${recipes}">
         <li><a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a></li></ul></td>
 </tr>
 </body>

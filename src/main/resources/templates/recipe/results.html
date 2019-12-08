@@ -43,7 +43,7 @@
     <th>All Authors</th>
 </tr>
 <tr>
-    <td th:each="user : ${allUsers}"> <ul class="index-list">
+    <td th:each="user : ${authors}"> <ul class="index-list">
         <li><a th:href="'/recipe/indivUser/' + ${user.id}" th:text="${user.name}"></a></li></ul></td>
 </tr>
 </body>

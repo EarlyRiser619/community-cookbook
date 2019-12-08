@@ -59,6 +59,8 @@ public class RecipeController {
         }
         model.addAttribute("results", results);
         model.addAttribute("title", "Search for a Favorite Recipe");
+        model.addAttribute("recipes", recipeDao.findAll());
+        model.addAttribute("authors", userDao.findAll());
         return "recipe/results";
 
     }
@@ -73,6 +75,7 @@ public class RecipeController {
         }
         model.addAttribute("results", results);
         model.addAttribute("title", "Search for a Favorite Author");
+        model.addAttribute("recipes", recipeDao.findAll());
         return "user/results";
 
     }
@@ -88,7 +91,7 @@ public class RecipeController {
         }
         model.addAttribute("results", results);
         model.addAttribute("title", "Recipe Search Results");
-        model.addAttribute("allUsers", userDao.findAll());
+        model.addAttribute("authors", userDao.findAll());
         return "recipe/results";
         }
 
@@ -98,12 +101,12 @@ public class RecipeController {
         for (User user : userDao.findAll()) {
             if (contains(user.getName(), byUser)) {
                 results.add(user);
-            } else if (contains(user.getLastName(), byUser)) {
+            } /*else if (contains(user.getLastName(), byUser)) {
                 results.add(user);
-            }
+            }*/
         }
         model.addAttribute("results", results);
-        model.addAttribute("allRecipes", recipeDao.findAll());
+        model.addAttribute("recipes", recipeDao.findAll());
         model.addAttribute("title", "Search Results");
         return "user/results";
     }
