@@ -92,7 +92,7 @@ public class RecipeController {
         return "recipe/results";
         }
 
-    @RequestMapping(value = "search/{byUser}", method = RequestMethod.GET)
+    @RequestMapping(value = "findAuthor/{byUser}", method = RequestMethod.GET)
     public String searchUserRecipes(@Valid @ModelAttribute ("byUser") String byUser, Model model, Errors errors) {
         List<User> results = new ArrayList<>();
         for (User user : userDao.findAll()) {
