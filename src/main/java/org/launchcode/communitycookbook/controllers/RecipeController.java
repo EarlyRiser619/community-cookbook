@@ -65,6 +65,7 @@ public class RecipeController {
 
         model.addAttribute("results", results);
         model.addAttribute("title", "Search for a Favorite Recipe");
+        model.addAttribute("recipeTypes", RecipeType.values());
         model.addAttribute("authors", userDao.findAll());
         return "recipe/results";
 
@@ -85,6 +86,7 @@ public class RecipeController {
         }
         model.addAttribute("results", results);
         model.addAttribute("title", "Search for a Favorite Author");
+        model.addAttribute("recipeTypes", RecipeType.values());
         model.addAttribute("recipes", recipeDao.findAll());
         return "user/results";
 
@@ -106,6 +108,7 @@ public class RecipeController {
         }
         model.addAttribute("results", results);
         model.addAttribute("title", "Recipe Search Results");
+        model.addAttribute("recipeTypes", RecipeType.values());
         model.addAttribute("authors", userDao.findAll());
         return "recipe/results";
         }
@@ -116,12 +119,13 @@ public class RecipeController {
         for (User user : userDao.findAll()) {
             if (contains(user.getName(), byUser)) {
                 results.add(user);
-            } /*else if (contains(user.getLastName(), byUser)) {
+            }/*else if (contains(user.getLastName(), byUser)) {
                 results.add(user);
             }*/
         }
         model.addAttribute("results", results);
         model.addAttribute("recipes", recipeDao.findAll());
+        model.addAttribute("recipeTypes", RecipeType.values());
         model.addAttribute("title", "Search Results");
         return "user/results";
     }
@@ -143,8 +147,6 @@ public class RecipeController {
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddRecipeForm(Model model) {
-
-
         model.addAttribute("title", "Add Recipe");
         model.addAttribute(new Recipe());
         model.addAttribute("recipeTypes", RecipeType.values());
@@ -237,26 +239,26 @@ public class RecipeController {
     @RequestMapping(value = "user/indiv/{userId}")
     public String displayUserSearch(@Valid @ModelAttribute("userId") int userId, Model model, Errors errors){
         User user = userDao.findOne(userId);
-        List<Recipe> recipes = user.getUserRecipes();
+        List<Recipe> recipes = user.getRecipes();
         model.addAttribute("title", "Author Results");
         model.addAttribute("recipes", recipes);
         model.addAttribute("recipeTypes", RecipeType.values());
         model.addAttribute("user", user);
+        model.addAttribute("allRecipes", recipeDao.findAll());
 
         return "user/indiv";
     }
 
     @RequestMapping(value = "user/home")
     public String userIndex(Model model, HttpServletRequest request){
-        /* need to verify active session for user and pass user info into model*/
-
         User loggedInUser = userService.findUserByEmail(request.getRemoteUser());
-        List<Recipe> userRecipes = loggedInUser.getUserRecipes();
+        List<Recipe> userRecipes = loggedInUser.getRecipes();
         model.addAttribute("title", loggedInUser.getName() + "'s Recipes");
         model.addAttribute("user", loggedInUser);
         model.addAttribute("recipes", userRecipes);
         model.addAttribute("recipeTypes", RecipeType.values());
         return "user/index";
     }
+
 
 }
