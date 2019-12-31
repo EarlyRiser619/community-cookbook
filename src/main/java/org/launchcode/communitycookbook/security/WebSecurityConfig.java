@@ -54,6 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/recipe/indiv/{recipeId}").permitAll()
                 .antMatchers("/recipe/indivUser/{userId}").permitAll()
                 .antMatchers("/recipe/user/indiv/{userId}").permitAll()
+                .antMatchers("/recipe/user/indiv").permitAll()
                 .antMatchers("/user/results/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()

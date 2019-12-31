@@ -236,8 +236,8 @@ public class RecipeController {
         return "recipe/indiv";
     }
 
-    @RequestMapping(value = "user/indiv/{userId}")
-    public String displayUserSearch(@Valid @ModelAttribute("userId") int userId, Model model, Errors errors){
+    @RequestMapping(value = "user/indiv/{userId}", method = RequestMethod.GET)
+    public String processUserSearch(@Valid @ModelAttribute("userId") int userId, Model model, Errors errors){
         User user = userDao.findOne(userId);
         List<Recipe> recipes = user.getRecipes();
         model.addAttribute("title", "Author Results");
@@ -248,6 +248,18 @@ public class RecipeController {
 
         return "user/indiv";
     }
+
+    /*@RequestMapping(value = "user/indiv", method = RequestMethod.POST)
+    public String displayUserSearch(Model model, @ModelAttribute @Valid User user,
+                                    @ModelAttribute @Valid List<Recipe> recipes, Errors errors){
+        model.addAttribute("title", "Author Results");
+        model.addAttribute("recipes", recipes);
+        model.addAttribute("recipeTypes", RecipeType.values());
+        model.addAttribute("user", user);
+        model.addAttribute("allRecipes", recipeDao.findAll());
+
+        return "redirect:user/indiv";
+    }*/
 
     @RequestMapping(value = "user/home")
     public String userIndex(Model model, HttpServletRequest request){
