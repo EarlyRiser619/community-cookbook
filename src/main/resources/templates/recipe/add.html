@@ -3,6 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments :: head"></head>
 <body>
+<div class="container">
 <nav th:replace="fragments :: navigation"></nav>
 <br />
 <h1 th:text="${title}">Default Title</h1>
@@ -10,29 +11,30 @@
 
 
 <form method="post" th:object="${recipe}">
-    <div>
+    <div class="form-group col-sm-6">
         <label th:for="name">Name of Recipe</label>
-        <input th:field="*{name}" required />
+        <input th:field="*{name}" class="form-control" required />
         <span th:errors="*{name}" class="error"></span>
     </div>
-    <div>
+    <div class="form-group col-sm-4">
         <label th:for="type">Type</label>
-        <select th:field="*{type}" required>
+        <select th:field="*{type}" class="form-control" required>
             <option value="" hidden>Select a Type</option>
             <option th:each="recipeType : ${recipeTypes}"
                     th:text="${recipeType.name}"
                     th:value="${recipeType}"></option>
         </select>
     </div>
+    <br />
     <!--<div>
         <label th:for="categories">Would you like to add a category for your recipe?</label>
         <input th:field="*{categories}" type="text" id="catVal" />
         <button onClick="addLi(); return false;">Add Category</button>
         <span th:errors="*{categories}" class="errors"></span>
     </div> -->
-    <div>
+    <div class="form-group col-sm-4">
         <label th:for="category">Category</label>
-        <select th:field="*{categories}" required>
+        <select th:field="*{categories}" class="form-control" required>
             <option value="" hidden>Select a Category</option>
             <option th:each="category : ${categories}"
                     th:text="${category.name}"
@@ -44,22 +46,22 @@
         <input type="checkbox" th:field="*{categories}" />
         <label th:text="${category.name}">Category</label>
     </div>-->
-    <div>
+    <div class="form-group col-sm-6">
         <label th:for="source">Source</label>
-        <input th:field="*{source}" />
+        <input th:field="*{source}" class="form-control" />
         <span th:errors="*{source}" class="errors"></span>
     </div>
-    <div>
+    <div class="form-group col-sm-4">
         <label th:for="servings">Number of Servings</label>
-        <input th:field="*{servings}" />
+        <input th:field="*{servings}" class="form-control" />
         <span th:errors="*{servings}" class="errors"></span>
     </div>
-    <div>
+    <div class="form-group col-sm-4">
         <label th:for="time">Prep Time (in minutes)</label>
-        <input th:field="*{time}" />
+        <input th:field="*{time}" class="form-control" />
         <span th:errors="*{time}" class="errors"></span>
     </div>
-    <table>
+    <table class="form-group col-sm-6">
         <thead>
             <tr>
                 <!--<th th:text="#{recipe.ingredients.id}">Item</th>-->
@@ -74,10 +76,10 @@
         <tr th:each="ingredient,ingredientStat : *{ingredients}">
             <!--<td th:text="${ingredientStat.count}"></td>-->
             <td>
-                <input type="text" th:field="*{ingredients[__${ingredientStat.index}__].measurement}" />
+                <input type="text" th:field="*{ingredients[__${ingredientStat.index}__].measurement}" class="form-control" />
             </td>
             <td>
-                <input type="text" th:field="*{ingredients[__${ingredientStat.index}__].name}" />
+                <input type="text" th:field="*{ingredients[__${ingredientStat.index}__].name}" class="form-control" />
             </td>
             <td>
                 <button type="submit" name="removeIngredient"
@@ -110,7 +112,7 @@
              }
         </script>
     </div>-->
-    <table>
+    <table class="form-group col-sm-6">
         <thead>
             <tr>
                 <th>Instructions</th>
@@ -122,7 +124,7 @@
         <tbody>
         <tr th:each="step,stepStat : *{instructions}">
             <td>
-                <input type="text" th:field="*{instructions[__${stepStat.index}__]}" />
+                <input type="text" th:field="*{instructions[__${stepStat.index}__]}" class="form-control" />
             </td>
             <td>
                 <button type="submit" name="removeStep"
@@ -143,6 +145,6 @@
 
 
 </form>
-
+</div>
 </body>
 </html>

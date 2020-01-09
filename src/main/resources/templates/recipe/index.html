@@ -3,6 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments :: head"></head>
 <body>
+<div class="container">
 <nav th:replace="fragments :: navigation"></nav><br />
 <img src="../Images/cookbook1.jpg" alt="cooking utensils and bowls" height="200">
 <br />
@@ -48,6 +49,6 @@
         <td th:each="user : ${users}"> <ul class="index-list">
             <li><a th:href="'/recipe/user/indiv/' + ${user.id}" th:text="${user.name}"></a></li></ul></td>
     </tr>
-
+</div>
 </body>
 </html>

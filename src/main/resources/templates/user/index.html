@@ -3,6 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments :: head"></head>
 <body>
+<div class="container">
 <nav th:replace="fragments :: navigation"></nav>
 <br />
 <form th:action="@{/logout}" method="post">
@@ -70,6 +71,6 @@
 </table>
 
 <!--<h5><li th:each="recipe :  ${recipes}" th:text="${recipe.name}"></li></h5>-->
-
+</div>
 </body>
 </html>

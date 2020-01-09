@@ -3,6 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments :: head"></head>
 <body>
+<div class="container">
 <nav th:replace="fragments :: navigation"></nav>
 <br />
 <h1 th:text="${title}"></h1>
@@ -45,5 +46,6 @@
     <td th:each="user : ${authors}"> <ul class="index-list">
         <li><a th:href="'/recipe/user/indiv/' + ${user.id}" th:text="${user.name}"></a></li></ul></td>
 </tr>
+</div>
 </body>
 </html>
