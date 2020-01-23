@@ -16,9 +16,9 @@
 
 <p th:unless="${results} and ${results.size()}">I'm sorry, no users match that name</p>
 <hr />
-<tr>
-    <th>Author Results</th>
-</tr>
+
+    <h4>Author Results</h4>
+
 <tr>
     <td th:each="user : ${results}"> <ul class="index-list">
         <li><a th:href="'/recipe/user/indiv/' + ${user.id}" th:text="${user.name}"></a></li></ul></td>
@@ -34,7 +34,7 @@
 
 <hr />
 <hr />
-<form th:action="@{/recipe/search}" method="GET">
+<form th:action="@{/recipe/search}" method="POST">
     <label th:for="byName">Search by Name of Recipe:</label>
     <input type="text" id="byName" th:name="byName" />
     <input type="submit" value="Find A Recipe" />
