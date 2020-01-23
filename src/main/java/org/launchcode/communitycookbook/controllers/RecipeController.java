@@ -122,40 +122,16 @@ public class RecipeController {
             return "recipe/index";
         }
 
-        //results.add(userDao.findByName(byUser));
-
-        for (User user : userDao.findByName(byUser)) {
+        for (User user : userDao.findByNameOrLastName(byUser, byUser)) {
             results.add(user);
         }
 
-        /*for (User user : userDao.findAll()) {
-            if (contains(user.getName(), byUser)) {
-                results.add(user);
-            }else if (contains(user.getLastName(), byUser)) {
-                results.add(user);
-            }
-        }*/
         model.addAttribute("results", results);
         model.addAttribute("recipes", recipeDao.findAll());
         model.addAttribute("recipeTypes", RecipeType.values());
         model.addAttribute("title", "Search Results");
         return "user/results";
     }
-
-    /* @RequestMapping(value = "results", method = RequestMethod.POST)
-    public String results(Model model, @Valid @ModelAttribute List<Recipe> results, Errors errors) {
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Find Recipe");
-            model.addAttribute("recipes", recipeDao.findAll());
-            model.addAttribute("errors", errors);
-            return "recipe/search";
-        }
-
-        model.addAttribute("results", results);
-        model.addAttribute("title", "Search Results");
-        return "redirect:recipe/searchResults";
-    } */
-
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddRecipeForm(Model model) {
