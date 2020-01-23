@@ -200,7 +200,10 @@ public class RecipeController {
     @RequestMapping(value = "user/indiv/{userId}", method = RequestMethod.GET)
     public String processUserSearch(@Valid @ModelAttribute("userId") int userId, Model model, Errors errors){
         User user = userDao.findOne(userId);
-        List<Recipe> recipes = user.getRecipes();
+        List<Recipe> recipes = new ArrayList<>();
+        for (Recipe recipe : recipeDao.findByUser(user)) {
+            recipes.add(recipe);
+        }
         model.addAttribute("title", "Author Results");
         model.addAttribute("recipes", recipes);
         model.addAttribute("recipeTypes", RecipeType.values());

@@ -13,12 +13,10 @@ import java.util.List;
 public interface UserDao extends CrudRepository<User, Integer> {
     User findByEmail(String email);
 
-    List<User> findByName(String name);
-
     default User findOne(Integer id) {
         return (User) findById(id).orElse(null);
     }
 
-    List <User> findByNameOrLastName(String name, String lastName);
+    List<User> findByNameOrLastName(String name, String lastName);
 
 }

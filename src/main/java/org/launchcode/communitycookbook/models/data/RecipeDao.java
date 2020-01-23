@@ -1,6 +1,7 @@
 package org.launchcode.communitycookbook.models.data;
 
 import org.launchcode.communitycookbook.models.Recipe;
+import org.launchcode.communitycookbook.models.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +16,8 @@ import java.util.List;
         }
 
         List<Recipe> findByName(String name);
+
+        List<Recipe> findByUser(User user);
 
     }
 
