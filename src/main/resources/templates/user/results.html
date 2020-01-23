@@ -25,7 +25,7 @@
 </tr>
 <hr />
 
-<form th:action="@{/recipe/findAuthor}" method="GET">
+<form th:action="@{/recipe/findAuthor}" method="POST">
     <label th:for="byUser">Search by Name of Author:</label>
     <input type="text" id="byUser" name="byUser" />
     <input type="submit" value="Find An Author" />
