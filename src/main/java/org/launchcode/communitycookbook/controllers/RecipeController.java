@@ -49,20 +49,17 @@ public class RecipeController {
         return "recipe/index";
     }
 
-    @RequestMapping(value = "search", method = RequestMethod.GET)
-    public String findByName(@Valid @ModelAttribute String byName, Model model,Errors errors) {
+    @RequestMapping(value = "search", method = RequestMethod.POST)
+    public String findByName(@Valid @ModelAttribute ("byName") String byName, Model model,Errors errors) {
         if(errors.hasErrors()) {
             model.addAttribute("title", "Search for a Favorite Recipe");
             model.addAttribute("authors", userDao.findAll());
             return "recipe/index";
         }
         List<Recipe> results = new ArrayList<>();
-        for(Recipe recipe : recipeDao.findAll()) {
-            if(contains(recipe.getName(), byName)) {
-                results.add(recipe);
-            } else return "recipe/results";
+        for (Recipe recipe : recipeDao.findByName(byName)) {
+            results.add(recipe);
         }
-
         model.addAttribute("results", results);
         model.addAttribute("title", "Search for a Favorite Recipe");
         model.addAttribute("recipeTypes", RecipeType.values());
@@ -70,28 +67,6 @@ public class RecipeController {
         return "recipe/results";
 
     }
-
-    /*@RequestMapping(value = "findAuthor", method = RequestMethod.GET)
-    public String findByUser(@Valid @ModelAttribute String byUser, Model model,Errors errors) {
-        if(errors.hasErrors()) {
-            model.addAttribute("title", "Author Search Results");
-            model.addAttribute("recipes", recipeDao.findAll());
-            return "recipe/index";
-        }
-        List<User> results = new ArrayList<>();
-        for (User user : userDao.findAll()) {
-            if (contains(user.getName(), byUser)) {
-                results.add(user);
-            }
-        }
-        model.addAttribute("results", results);
-        model.addAttribute("title", "Search for a Favorite Author");
-        model.addAttribute("recipeTypes", RecipeType.values());
-        model.addAttribute("recipes", recipeDao.findAll());
-        return "user/results";
-
-    }*/
-
 
     @RequestMapping(value = "search/{byName}", method = RequestMethod.GET)
     public String searchRecipes(@Valid @ModelAttribute ("byName") String byName, Model model, Errors errors) {
@@ -121,11 +96,9 @@ public class RecipeController {
             model.addAttribute("recipes", recipeDao.findAll());
             return "recipe/index";
         }
-
         for (User user : userDao.findByNameOrLastName(byUser, byUser)) {
             results.add(user);
         }
-
         model.addAttribute("results", results);
         model.addAttribute("recipes", recipeDao.findAll());
         model.addAttribute("recipeTypes", RecipeType.values());

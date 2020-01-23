@@ -5,13 +5,16 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
-    @Repository
+@Repository
     @Transactional
     public interface RecipeDao extends CrudRepository<Recipe, Integer> {
         default Recipe findOne(Integer id) {
             return (Recipe) findById(id).orElse(null);
         }
+
+        List<Recipe> findByName(String name);
 
     }
 
