@@ -68,7 +68,7 @@
                 <th> <!--th:text="#{recipe.ingredients.measurement}"-->Measurement </th>
                 <th> <!--th:text="#{recipe.ingredients.name}"--> Ingredient</th>
                 <th>
-                    <button type="submit" name="addIngredient" th:value="#{recipe.ingredient.add}"> <!--th:text="#{recipe.ingredient.add}"-->Add Ingredient</button>
+                    <button type="submit" class="btn btn-success" name="addIngredient" th:value="#{recipe.ingredient.add}"> <!--th:text="#{recipe.ingredient.add}"-->Add Ingredient</button>
                 </th>
             </tr>
         </thead>
@@ -82,7 +82,7 @@
                 <input type="text" th:field="*{ingredients[__${ingredientStat.index}__].name}" class="form-control" />
             </td>
             <td>
-                <button type="submit" name="removeIngredient"
+                <button type="submit" class="btn btn-info" name="removeIngredient"
                         th:value="${ingredientStat.index}"> <!--th:value="#{recipe.ingredient.remove}"-->Remove Ingredient</button>
             </td>
         </tr>
@@ -117,7 +117,7 @@
             <tr>
                 <th>Instructions</th>
                 <th>
-                    <button type="submit" name="addStep" th:value="#{recipe.instructions.add}">Add Step</button>
+                    <button type="submit" class="btn btn-success" name="addStep" th:value="#{recipe.instructions.add}">Add Step</button>
                 </th>
             </tr>
         </thead>
@@ -127,8 +127,8 @@
                 <input type="text" th:field="*{instructions[__${stepStat.index}__]}" class="form-control" />
             </td>
             <td>
-                <button type="submit" name="removeStep"
-                        th:value="${stepStat.index}"> <!--th:text="#{recipe.instructions.remove}"-->Remove Step</button>
+                <button type="submit" class="btn btn-info" name="removeStep"
+                        th:value="${stepStat.index}">Remove Step</button>
             </td>
         </tbody>
     </table>
@@ -138,11 +138,12 @@
         <input type="text" th:field="*{instructions}"  required />
         <span th:errors="*{instructions}" class="errors"></span>
     </div>-->
+    <br />
 
-
-    <input type="hidden" value="*{user}" name="userId" />
-    <input type="submit" value="Add Recipe" />
-
+    <div class="form-group col-med-4">
+        <input type="hidden" value="*{user}" name="userId" />
+        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Add Recipe" />
+    </div>
 
 </form>
 </div>
