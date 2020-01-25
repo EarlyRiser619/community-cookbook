@@ -43,7 +43,7 @@ public class User {
     @OneToMany
     //@JoinTable(name = "user_recipes", joinColumns = @JoinColumn(name= "user_id"), inverseJoinColumns = @JoinColumn(name = "recipe_id"))
     @JoinColumn(name="user_recipes")
-    private List<Recipe> userRecipes = new ArrayList<>();
+    private List<Recipe> userRecipes;
 
     public List<Recipe> getRecipes() { return userRecipes; }
 

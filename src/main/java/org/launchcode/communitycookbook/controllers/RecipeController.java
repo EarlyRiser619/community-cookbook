@@ -228,7 +228,11 @@ public class RecipeController {
     @RequestMapping(value = "user/home")
     public String userIndex(Model model, HttpServletRequest request){
         User loggedInUser = userService.findUserByEmail(request.getRemoteUser());
-        List<Recipe> userRecipes = loggedInUser.getRecipes();
+        //List<Recipe> userRecipes = loggedInUser.getRecipes();
+        List<Recipe> userRecipes = new ArrayList<>();
+        for (Recipe recipe : recipeDao.findByUser(loggedInUser)) {
+            userRecipes.add(recipe);
+        }
         model.addAttribute("title", loggedInUser.getName() + "'s Recipes");
         model.addAttribute("user", loggedInUser);
         model.addAttribute("recipes", userRecipes);
