@@ -1,5 +1,6 @@
 package org.launchcode.communitycookbook.models.data;
 
+import org.launchcode.communitycookbook.models.Recipe;
 import org.launchcode.communitycookbook.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;

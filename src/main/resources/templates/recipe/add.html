@@ -26,12 +26,6 @@
         </select>
     </div>
     <br />
-    <!--<div>
-        <label th:for="categories">Would you like to add a category for your recipe?</label>
-        <input th:field="*{categories}" type="text" id="catVal" />
-        <button onClick="addLi(); return false;">Add Category</button>
-        <span th:errors="*{categories}" class="errors"></span>
-    </div> -->
     <div class="form-group col-sm-4">
         <label th:for="category">Category</label>
         <select th:field="*{categories}" class="form-control" required>
@@ -41,11 +35,6 @@
                     th:value="${category}"></option>
         </select>
     </div>
-
-    <!-- <div th:each="category : ${categories}" name="categoryId" />
-        <input type="checkbox" th:field="*{categories}" />
-        <label th:text="${category.name}">Category</label>
-    </div>-->
     <div class="form-group col-sm-6">
         <label th:for="source">Source</label>
         <input th:field="*{source}" class="form-control" />
@@ -64,17 +53,15 @@
     <table class="form-group col-sm-6">
         <thead>
             <tr>
-                <!--<th th:text="#{recipe.ingredients.id}">Item</th>-->
-                <th> <!--th:text="#{recipe.ingredients.measurement}"-->Measurement </th>
-                <th> <!--th:text="#{recipe.ingredients.name}"--> Ingredient</th>
+                <th>Measurement </th>
+                <th>Ingredient</th>
                 <th>
-                    <button type="submit" class="btn btn-success" name="addIngredient" th:value="#{recipe.ingredient.add}"> <!--th:text="#{recipe.ingredient.add}"-->Add Ingredient</button>
+                    <button type="submit" class="btn btn-success" name="addIngredient" th:value="#{recipe.ingredient.add}">Add Ingredient</button>
                 </th>
             </tr>
         </thead>
         <tbody>
         <tr th:each="ingredient,ingredientStat : *{ingredients}">
-            <!--<td th:text="${ingredientStat.count}"></td>-->
             <td>
                 <input type="text" th:field="*{ingredients[__${ingredientStat.index}__].measurement}" class="form-control" />
             </td>
@@ -83,35 +70,11 @@
             </td>
             <td>
                 <button type="submit" class="btn btn-info" name="removeIngredient"
-                        th:value="${ingredientStat.index}"> <!--th:value="#{recipe.ingredient.remove}"-->Remove Ingredient</button>
+                        th:value="${ingredientStat.index}">Remove Ingredient</button>
             </td>
         </tr>
         </tbody>
     </table>
-    <!--<div>
-        <label th:for="ingredients">Ingredients</label>
-        <input th:field="*{ingredients}" type="text" id="txtVal" />
-        <button onclick="addLi(); return false;">Add Ingredient</button>
-        <span th:errors="*{ingredients}" class="errors"></span>
-
-        <ul id="ingrList">
-        </ul>
-
-        <script>
-            function addLi()
-            {
-                txtDoc = document.getElementById('txtVal');
-                var txtVal = txtDoc.value;
-                    listNode = document.getElementById('ingrList');
-                    liNode = document.createElement("LI");
-                    txtNode = document.createTextNode(txtVal);
-                liNode.appendChild(txtNode);
-                listNode.appendChild(liNode);
-                txtDoc.value = '';
-                txtDoc.focus();
-             }
-        </script>
-    </div>-->
     <table class="form-group col-sm-6">
         <thead>
             <tr>
@@ -124,7 +87,7 @@
         <tbody>
         <tr th:each="step,stepStat : *{instructions}">
             <td>
-                <input type="text" th:field="*{instructions[__${stepStat.index}__]}" class="form-control" />
+                <input type="text" value="Add Step" th:field="*{instructions[__${stepStat.index}__]}" class="form-control" />
             </td>
             <td>
                 <button type="submit" class="btn btn-info" name="removeStep"
@@ -132,12 +95,6 @@
             </td>
         </tbody>
     </table>
-
-    <!--<div>
-        <label th:for="instructions">Instructions</label>
-        <input type="text" th:field="*{instructions}"  required />
-        <span th:errors="*{instructions}" class="errors"></span>
-    </div>-->
     <br />
 
     <div class="form-group col-med-4">

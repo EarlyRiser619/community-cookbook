@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="fragments :: head"></head>
+<body>
+<div class="container">
+    <nav th:replace="fragments :: navigation"></nav>
+    <br />
+    <h1 th:text="${title}">Default Title</h1>
+
+
+
+    <form method="post" th:object="${recipe}">
+        <div class="form-group col-sm-6">
+            <label th:for="name">Name of Recipe</label>
+            <input th:field="*{name}" class="form-control" required />
+            <span th:errors="*{name}" class="error"></span>
+        </div>
+        <div class="form-group col-sm-4">
+            <label th:for="type">Type</label>
+            <select th:field="*{type}" class="form-control" required>
+                <option value="" hidden>Select a Type</option>
+                <option th:each="recipeType : ${recipeTypes}"
+                        th:text="${recipeType.name}"
+                        th:value="${recipeType}"></option>
+            </select>
+        </div>
+        <br />
+        <div class="form-group col-sm-4">
+            <label th:for="category">Category</label>
+            <select th:field="*{categories}" class="form-control" required>
+                <option value="" hidden>Select a Category</option>
+                <option th:each="category : ${categories}"
+                        th:text="${category.name}"
+                        th:value="${category}"></option>
+            </select>
+        </div>
+        <div class="form-group col-sm-6">
+            <label th:for="source">Source</label>
+            <input th:field="*{source}" class="form-control" />
+            <span th:errors="*{source}" class="errors"></span>
+        </div>
+        <div class="form-group col-sm-4">
+            <label th:for="servings">Number of Servings</label>
+            <input th:field="*{servings}" class="form-control" />
+            <span th:errors="*{servings}" class="errors"></span>
+        </div>
+        <div class="form-group col-sm-4">
+            <label th:for="time">Prep Time (in minutes)</label>
+            <input th:field="*{time}" class="form-control" />
+            <span th:errors="*{time}" class="errors"></span>
+        </div>
+        <table class="form-group col-sm-6">
+            <thead>
+            <tr>
+                <th>Measurement </th>
+                <th>Ingredient</th>
+                <th>
+                    <button type="submit" class="btn btn-success" name="addIngredient" th:value="#{recipe.ingredient.add}">Add Ingredient</button>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ingredient,ingredientStat : *{ingredients}">
+                <td>
+                    <input type="text" th:field="*{ingredients[__${ingredientStat.index}__].measurement}" class="form-control" />
+                </td>
+                <td>
+                    <input type="text" th:field="*{ingredients[__${ingredientStat.index}__].name}" class="form-control" />
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-info" name="removeIngredient"
+                            th:value="${ingredientStat.index}">Remove Ingredient</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="form-group col-sm-6">
+            <thead>
+            <tr>
+                <th>Instructions</th>
+                <th>
+                    <button type="submit" class="btn btn-success" name="addStep" th:value="#{recipe.instructions.add}">Add Step</button>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="step,stepStat : *{instructions}">
+                <td>
+                    <input type="text" value="Add Step" th:field="*{instructions[__${stepStat.index}__]}" class="form-control" />
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-info" name="removeStep"
+                            th:value="${stepStat.index}">Remove Step</button>
+                </td>
+            </tbody>
+        </table>
+        <br />
+
+        <div class="form-group col-med-4">
+            <input type="hidden" value="*{user}" name="userId" />
+            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Edit Recipe" />
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

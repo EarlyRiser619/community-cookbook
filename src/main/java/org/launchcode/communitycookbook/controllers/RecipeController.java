@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 import static org.thymeleaf.util.StringUtils.contains;
 
@@ -130,16 +128,8 @@ public class RecipeController {
             return "recipe/add";
         }
 
-        /*ArrayList<String> ingredients = new ArrayList<>();
-        for (String ingredient : newRecipe.getIngredients()) {
-            ingredients.add(ingredient);
-        }*/
-
-        //Category cat = Category.getById(int id : categoryId);
-        //newRecipe.setCategories(cat);
         User author = userDao.findByEmail(request.getRemoteUser());
         newRecipe.setUser(author);
-        //newRecipe.setIngredients(ingredients);
         recipeDao.save(newRecipe);
         return "redirect:/recipe/indiv/" + newRecipe.getId();
     }
@@ -213,18 +203,6 @@ public class RecipeController {
         return "user/indiv";
     }
 
-    /*@RequestMapping(value = "user/indiv", method = RequestMethod.POST)
-    public String displayUserSearch(Model model, @ModelAttribute @Valid User user,
-                                    @ModelAttribute @Valid List<Recipe> recipes, Errors errors){
-        model.addAttribute("title", "Author Results");
-        model.addAttribute("recipes", recipes);
-        model.addAttribute("recipeTypes", RecipeType.values());
-        model.addAttribute("user", user);
-        model.addAttribute("allRecipes", recipeDao.findAll());
-
-        return "redirect:user/indiv";
-    }*/
-
     @RequestMapping(value = "user/home")
     public String userIndex(Model model, HttpServletRequest request){
         User loggedInUser = userService.findUserByEmail(request.getRemoteUser());
@@ -240,5 +218,72 @@ public class RecipeController {
         return "user/index";
     }
 
+    @RequestMapping(value = "edit/{recipeId}", method = RequestMethod.GET)
+    public String displayEditRecipeForm(Model model, @PathVariable int recipeId){
+        Recipe recipe = recipeDao.findOne(recipeId);
+
+        model.addAttribute("recipe", recipe);
+        model.addAttribute("recipeTypes", RecipeType.values());
+        model.addAttribute("categories", Category.values());
+        model.addAttribute("ingredients", ingredientDao.findAll());
+        model.addAttribute("title", "Edit Recipe " + recipe.getName());
+        return "recipe/edit";
+    }
+
+    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    public String processEditRecipeForm(int recipeId, @ModelAttribute @Valid Recipe recipe, Errors errors, Model model){
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Edit Recipe");
+            model.addAttribute("recipeTypes", RecipeType.values());
+            model.addAttribute("categories", Category.values());
+            model.addAttribute("ingredients", ingredientDao.findAll());
+            model.addAttribute("user", userDao.findAll());
+            return "recipe/edit";
+        }
+
+
+        recipeDao.save(recipe);
+        return "redirect:/recipe/indiv/" + recipe.getId();
+    }
+
+    @RequestMapping(value = "edit", params={"addIngredient"})
+    public String addEditIngredient(Model model, Recipe recipe, BindingResult bindingResult) {
+        model.addAttribute("recipeTypes", RecipeType.values());
+        model.addAttribute("categories", Category.values());
+        model.addAttribute("ingredients", ingredientDao.findAll());
+        model.addAttribute("user", userDao.findAll());
+        recipe.getIngredients().add(new Ingredient());
+        return "recipe/edit";
+    }
+
+    @RequestMapping(value = "edit", params={"removeIngredient"})
+    public String removeEditIngredient(Model model, Recipe recipe, BindingResult bindingResult, HttpServletRequest req) {
+        model.addAttribute("ingredients", ingredientDao.findAll());
+        Integer ingredientId = Integer.valueOf(req.getParameter("removeIngredient"));
+        recipe.getIngredients().remove(ingredientId.intValue());
+        model.addAttribute("recipeTypes", RecipeType.values());
+        model.addAttribute("categories", Category.values());
+        return "recipe/edit";
+    }
+
+    @RequestMapping(value = "edit", params={"addStep"})
+    public String addEditInstruction(Model model, Recipe recipe, BindingResult bindingResult) {
+        model.addAttribute("recipeTypes", RecipeType.values());
+        model.addAttribute("categories", Category.values());
+        model.addAttribute("ingredients", ingredientDao.findAll());
+        model.addAttribute("user", userDao.findAll());
+        recipe.getInstructions().add("addStep");
+        return "recipe/edit";
+    }
+
+    @RequestMapping(value = "edit", params={"removeStep"})
+    public String removeEditStep(Model model, Recipe recipe, BindingResult bindingResult, HttpServletRequest req) {
+        model.addAttribute("instructions", recipe.getInstructions());
+        Integer stepId = Integer.valueOf(req.getParameter("removeIngredient"));
+        recipe.getInstructions().remove(stepId.intValue());
+        model.addAttribute("recipeTypes", RecipeType.values());
+        model.addAttribute("categories", Category.values());
+        return "recipe/edit";
+    }
 
 }
