@@ -111,7 +111,7 @@ public class Recipe {
 
     public void addIngredient(Ingredient ingredient) { this.ingredients.add(ingredient); }
 
-    public void setIngredients(ArrayList<Ingredient> ingredients) { this.ingredients = ingredients; }
+    public void setIngredients(List<Ingredient> ingredients) { this.ingredients = ingredients; }
 
 
 }

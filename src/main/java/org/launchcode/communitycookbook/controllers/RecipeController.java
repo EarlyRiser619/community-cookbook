@@ -231,7 +231,7 @@ public class RecipeController {
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
-    public String processEditRecipeForm(int recipeId, @ModelAttribute @Valid Recipe recipe, Errors errors, Model model){
+    public String processEditRecipeForm(@ModelAttribute @Valid Recipe recipe, Errors errors, Model model){
         if (errors.hasErrors()) {
             model.addAttribute("title", "Edit Recipe");
             model.addAttribute("recipeTypes", RecipeType.values());
@@ -241,9 +241,18 @@ public class RecipeController {
             return "recipe/edit";
         }
 
+        Recipe editRecipe = recipeDao.findOne(recipe.getId());
 
-        recipeDao.save(recipe);
-        return "redirect:/recipe/indiv/" + recipe.getId();
+        editRecipe.setCategories(recipe.getCategories());
+        editRecipe.setIngredients(recipe.getIngredients());
+        editRecipe.setInstructions(recipe.getInstructions());
+        editRecipe.setName(recipe.getName());
+        editRecipe.setServings(recipe.getServings());
+        editRecipe.setSource(recipe.getSource());
+        editRecipe.setTime(recipe.getTime());
+        editRecipe.setType(recipe.getType());
+        recipeDao.save(editRecipe);
+        return "redirect:/recipe/indiv/" + editRecipe.getId();
     }
 
     @RequestMapping(value = "edit", params={"addIngredient"})
