@@ -6,10 +6,10 @@
 <nav th:replace="fragments :: navigation"></nav>
 <br />
 <div class="container">
-<form th:action="@{/logout}" method="post">
+<!--<form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out" />
 
-</form>
+</form>-->
 <h1 th:inline="text">Welcome <span th:text="${user.name} + ' ' + ${user.lastName}" />!</h1>
 
 <br />
