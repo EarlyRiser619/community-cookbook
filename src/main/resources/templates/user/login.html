@@ -16,23 +16,23 @@
     <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
 </form> -->
 
+    <div class="w3-center w3-padding-64" id="contact">
+        <span class="w3-xlarge w3-bottombar w3-border-teal w3-padding-16">  Login Form  </span>
+    </div>
 
-    <form th:action="@{/login}" method="POST" class="form-signin">
-        <h3 class="form-signin-heading" th:text="Welcome"></h3>
-        <br/>
-
-        <input type="text" id="email" name="email"  th:placeholder="Email"
-               class="form-control" /> <br/>
-        <input type="password"  th:placeholder="Password"
-               id="password" name="password" class="form-control" /> <br />
-
+    <form class="w3-container" th:action="@{/login}" method="post">
+        <div class="w3-section">
+            <input class="w3-input w3-border w3-hover-border-black" style="width:100%;" type="text" name="email"  th:placeholder="Email" required>
+        </div>
+        <div class="w3-section">
+            <input class="w3-input w3-border w3-hover-border-black" style="width:100%;" type="password"  th:placeholder="Password"
+                   name="password" required>
+        </div>
         <div align="center" th:if="${param.error}">
             <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
+        <button type="submit" class="w3-button w3-block w3-black">Log In</button>
     </form>
-
-    <br />
     <span align="center" style="color:#3770ff" th:utext="${successMessage}"></span>
 </div>
 </body>
