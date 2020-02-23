@@ -5,21 +5,124 @@
 <body>
 
 <nav th:replace="fragments :: navigation"></nav><br />
+
+<header class="w3-display-container w3-content w3-wide" style="max-width:1200px;min-width:400px" id="home">
+    <img class="w3-image" src="Images/cookbook1.jpg" alt="Cooking Utensils and Bowls" width="1200">
+    <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+        <h1 class="w3-xxlarge">Community Cookbook</h1>
+    </div>
+</header>
 <div class="container">
-<img src="Images/cookbook1.jpg" alt="cooking utensils and bowls" height="200">
+<!--<img src="Images/cookbook1.jpg" alt="cooking utensils and bowls" height="200">
 <br />
 <h1 th:text="${title}"></h1>
 
-<hr />
+<hr />-->
+    <div class="w3-center w3-padding-64">
+        <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16" th:unless="${recipes} and ${recipes.size()}">
+            Would you like to <a href="/recipe/add">add </a> a recipe?</span>
+    </div>
+<!--<p th:unless="${recipes} and ${recipes.size()}">Would you like to <a href="/recipe/add">add </a> a recipe?</p>-->
 
-<p th:unless="${recipes} and ${recipes.size()}">Would you like to <a href="/recipe/add">add </a> a recipe?</p>
+    <div class="w3-row-padding w3-padding-64 w3-theme-l1" id="explore">
 
-<form th:action="@{/recipe/search}" method="POST">
+        <div class="w3-quarter">
+            <h2>Browse The Cookbook</h2>
+            <p>In need of some inspiration, or do you know exactly what you're looking for? You can browse all recipes by
+                their name or author. If you don't see what you are looking for, why not <a href="/registration">join</a> our community?
+            Take a look at some featured recipes and get cooking!</p>
+        </div>
+
+        <div class="w3-quarter">
+            <div class="w3-card w3-white">
+                <img src="/Images/cookbook1.jpg" alt="Snow" style="width:100%">
+                <div class="w3-container">
+                    <h3>Featured Author 1</h3>
+                    <h4>Fabulous Recipe</h4>
+                    <p>Recipe Type</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-quarter">
+            <div class="w3-card w3-white">
+                <img src="/Images/cookbook1.jpg" alt="Lights" style="width:100%">
+                <div class="w3-container">
+                    <h3>Featured Author 1</h3>
+                    <h4>Fabulous Recipe</h4>
+                    <p>Recipe Type</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-quarter">
+            <div class="w3-card w3-white">
+                <img src="/Images/cookbook1.jpg" alt="Mountains" style="width:100%">
+                <div class="w3-container">
+                    <h3>Featured Author 1</h3>
+                    <h4>Fabulous Recipe</h4>
+                    <p>Recipe Type</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="w3-container w3-padding-64 w3-theme-l5" id="search-name">
+        <div class="w3-row">
+            <div class="w3-col m5">
+                <div class="w3-padding-16"><span class="w3-xlarge w3-border-teal w3-bottombar">Search by Name of Recipe:</span></div>
+                <h3>Search All Recipes</h3>
+                <div class="w3-dropdown-hover w3-hide-small">
+                <button class="w3-button" title="All Recipes">Browse All Recipes <i class="fa fa-caret-down"></i></button>
+                <div class="w3-dropdown-content w3-card-4 w3-bar-block" th:each="recipe :  ${recipes}">
+                    <a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}" class="w3-bar-item w3-button">Recipe</a>
+                </div>
+            </div>
+            </div>
+            <div class="w3-col m7">
+                <form class="w3-container w3-card-4 w3-padding-16 w3-white" th:action="@{/recipe/search}" method="POST">
+                    <div class="w3-section">
+                        <label th:for="byName">Name</label>
+                        <input class="w3-input" type="text" name="byName" required>
+                    </div>
+                    <button type="submit" class="w3-button w3-right w3-theme">Find A Recipe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-container w3-padding-64 w3-theme-l5" id="search-author">
+        <div class="w3-row">
+            <div class="w3-col m5">
+                <div class="w3-padding-16"><span class="w3-xlarge w3-border-teal w3-bottombar">Search by Author's Name:</span></div>
+                <h3>Search All Authors</h3>
+                <div class="w3-dropdown-hover w3-hide-small">
+                    <button class="w3-button" title="All Authors">Browse All Authors <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" th:each="user : ${users}">
+                        <a th:href="'/recipe/user/indiv/' + ${user.id}" th:text="${user.name}" class="w3-bar-item w3-button">Author</a>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-col m7">
+                <form class="w3-container w3-card-4 w3-padding-16 w3-white" th:action="@{/recipe/findAuthor}" method="POST">
+                    <div class="w3-section">
+                        <label th:for="byUser">Name</label>
+                        <input class="w3-input" type="text" name="byUser" required>
+                    </div>
+                    <button type="submit" class="w3-button w3-right w3-theme">Find An Author</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!--<form th:action="@{/recipe/search}" method="POST">
     <label th:for="byName">Search by Name of Recipe:</label>
     <input type="text" id="byName" th:name="byName" />
     <input type="submit" value="Find A Recipe" />
 </form>
-<br />
+<br />-->
 
     <tr>
         <th>Recipes</th>
@@ -32,12 +135,12 @@
 
     <br />
 
-<form th:action="@{/recipe/findAuthor}" method="post">
+<!--<form th:action="@{/recipe/findAuthor}" method="post">
     <label th:for="byUser">Search by Name of Author:</label>
     <input type="text" id="byUser" name="byUser" />
     <input type="submit" value="Find An Author" />
 </form>
-<br />
+<br />-->
 
     <tr>
         <th>Authors</th>
