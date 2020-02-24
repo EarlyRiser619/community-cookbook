@@ -13,11 +13,6 @@
     </div>
 </header>
 <div class="container">
-<!--<img src="Images/cookbook1.jpg" alt="cooking utensils and bowls" height="200">
-<br />
-<h1 th:text="${title}"></h1>
-
-<hr />-->
     <div class="w3-center w3-padding-64">
         <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16" th:unless="${recipes} and ${recipes.size()}">
             Would you like to <a href="/recipe/add">add </a> a recipe?</span>
@@ -116,39 +111,6 @@
             </div>
         </div>
     </div>
-
-<!--<form th:action="@{/recipe/search}" method="POST">
-    <label th:for="byName">Search by Name of Recipe:</label>
-    <input type="text" id="byName" th:name="byName" />
-    <input type="submit" value="Find A Recipe" />
-</form>
-<br />
-
-    <tr>
-        <th>Recipes</th>
-    </tr>
-    <tr>
-        <td th:each="recipe :  ${recipes}"> <ul class="index-list">
-            <li><a th:href="'/recipe/indiv/' + ${recipe.id}" th:text="${recipe.name}"></a></li></ul></td>
-    </tr>
-
-
-    <br />
-
-<form th:action="@{/recipe/findAuthor}" method="post">
-    <label th:for="byUser">Search by Name of Author:</label>
-    <input type="text" id="byUser" name="byUser" />
-    <input type="submit" value="Find An Author" />
-</form>
-<br />
-
-    <tr>
-        <th>Authors</th>
-    </tr>
-    <tr>
-        <td th:each="user : ${users}"> <ul class="index-list">
-            <li><a th:href="'/recipe/user/indiv/' + ${user.id}" th:text="${user.name}"></a></li></ul></td>
-    </tr>-->
 </div>
 </body>
 </html>
