@@ -5,11 +5,107 @@
 <body>
 <nav th:replace="fragments :: navigation"></nav>
 <br />
-<div class="container">
-<h1 th:text="${title}">Default Title</h1>
-
-
-
+<div class="w3-center w3-padding-64">
+    <span class="w3-xlarge w3-border-teal w3-bottombar w3-padding-16" style="width:75%" th:text="${title}">Default Title</span>
+</div>
+    <form class="w3-container" method="post" th:object="${recipe}">
+        <div class="w3-row">
+            <div class="w3-col m2">
+                <div class="w3-section">
+                    <label th:for="name">Name of Recipe</label>
+                    <input class="w3-input w3-border w3-hover-border-black" style="width:100%;" th:field="*{name}" required>
+                    <span th:errors="*{name}" class="error"></span>
+                </div>
+                <div class="w3-section">
+                    <label th:for="source">Source</label>
+                    <input class="w3-input w3-border w3-hover-border-black" style="width:100%;" th:field="*{source}" required>
+                    <span th:errors="*{source}" class="errors"></span>
+                </div>
+                <div class="w3-section">
+                    <label>Course</label>
+                    <select class="w3-input w3-border w3-hover-border-black" style="width:100%;" th:field="*{type}" required>
+                        <option value="" hidden>Select a Course</option>
+                        <option th:each="recipeType : ${recipeTypes}"
+                                th:text="${recipeType.name}"
+                                th:value="${recipeType}"></option>
+                    </select>
+                </div>
+                <div class="w3-section">
+                    <label th:for="category">Special Category</label>
+                    <select class="w3-input w3-border w3-hover-border-black" style="width:100%;" th:field="*{categories}" required>
+                        <option value="" hidden>Select a Category</option>
+                        <option th:each="category : ${categories}"
+                                th:text="${category.name}"
+                                th:value="${category}"></option>
+                    </select>
+                </div>
+                <div class="w3-section">
+                    <label th:for="servings">Number of Servings</label>
+                    <input class="w3-input w3-border w3-hover-border-black" style="width:100%;" th:field="*{servings}">
+                    <span th:errors="*{servings}" class="errors"></span>
+                </div>
+                <div class="w3-section">
+                    <label th:for="time">Prep Time (in minutes)</label>
+                    <input class="w3-input w3-border w3-hover-border-black" style="width:100%;" th:field="*{time}">
+                    <span th:errors="*{time}" class="errors"></span>
+                </div>
+            </div>
+            <div class="w3-col m5" style="overflow-x:auto;">
+                <table class="w3-section w3-border" style="margin:10px; padding:4px; width:95%;">
+                    <thead style="=padding:8px">
+                    <tr>
+                        <th>Measurement</th>
+                        <th>Ingredient</th>
+                        <th>
+                            <button type="submit" class="w3-button" style="margin:4px;" name="addIngredient"
+                                    th:value="#{recipe.ingredient.add}"><i class="fas fa-plus-square"></i>  Add Ingredient</button>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody style="=padding:8px">
+                    <tr th:each="ingredient,ingredientStat : *{ingredients}">
+                        <td style="=margin:2px">
+                            <input type="text" th:field="*{ingredients[__${ingredientStat.index}__].measurement}" class="form-control" />
+                        </td>
+                        <td style="=margin:2px">
+                            <input type="text" th:field="*{ingredients[__${ingredientStat.index}__].name}" class="form-control" />
+                        </td>
+                        <td>
+                            <button type="submit" class="w3-button w3-theme-d2" style="margin:4px;" name="removeIngredient"
+                                    th:value="${ingredientStat.index}"><i class="fas fa-minus-square"></i>  Remove Ingredient</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="w3-col m5" style="overflow-x:auto;">
+                <table class="w3-section w3-border" style="width:95%; margin:10px; padding:4px">
+                    <thead style="=padding:8px">
+                    <tr>
+                        <th>Instructions</th>
+                        <th>
+                            <button type="submit" class="w3-button" style="margin:4px;" name="addStep"
+                                    th:value="#{recipe.instructions.add}"><i class="far fa-plus-square"></i>Add Step</button>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody style="=padding:8px; margin:2px">
+                    <tr th:each="step,stepStat : *{instructions}">
+                        <td>
+                            <input type="text" value="Add Step" th:field="*{instructions[__${stepStat.index}__]}" class="form-control" />
+                        </td>
+                        <td>
+                            <button type="submit" class="w3-button w3-theme-d2" style="margin:4px;" name="removeStep"
+                                    th:value="${stepStat.index}"><i class="far fa-minus-square"></i>Remove Step</button>
+                        </td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <button type="submit" class="w3-button w3-block w3-theme">Submit Recipe</button>
+    </form>
+</div>
+<!--
 <form method="post" th:object="${recipe}">
     <div class="form-group col-sm-6">
         <label th:for="name">Name of Recipe</label>
@@ -102,7 +198,7 @@
         <input type="submit" class="btn btn-primary btn-lg btn-block" value="Add Recipe" />
     </div>
 
-</form>
+</form>--></div>
 </div>
 </body>
 </html>
