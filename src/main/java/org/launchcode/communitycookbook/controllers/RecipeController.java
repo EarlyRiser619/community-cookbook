@@ -136,6 +136,7 @@ public class RecipeController {
 
     @RequestMapping(value = "add", params={"addIngredient"})
     public String addIngredient(Model model, Recipe newRecipe, BindingResult bindingResult) {
+        model.addAttribute("title", "Add Recipe");
         model.addAttribute("recipeTypes", RecipeType.values());
         model.addAttribute("categories", Category.values());
         model.addAttribute("ingredients", ingredientDao.findAll());
@@ -146,6 +147,7 @@ public class RecipeController {
 
     @RequestMapping(value = "add", params={"removeIngredient"})
     public String removeIngredient(Model model, Recipe newRecipe, BindingResult bindingResult, HttpServletRequest req) {
+        model.addAttribute("title", "Add Recipe");
         model.addAttribute("ingredients", ingredientDao.findAll());
         Integer ingredientId = Integer.valueOf(req.getParameter("removeIngredient"));
         newRecipe.getIngredients().remove(ingredientId.intValue());
@@ -156,6 +158,7 @@ public class RecipeController {
 
     @RequestMapping(value = "add", params={"addStep"})
     public String addInstruction(Model model, Recipe newRecipe, BindingResult bindingResult) {
+        model.addAttribute("title", "Add Recipe");
         model.addAttribute("recipeTypes", RecipeType.values());
         model.addAttribute("categories", Category.values());
         model.addAttribute("ingredients", ingredientDao.findAll());
@@ -166,6 +169,7 @@ public class RecipeController {
 
     @RequestMapping(value = "add", params={"removeStep"})
     public String removeStep(Model model, Recipe newRecipe, BindingResult bindingResult, HttpServletRequest req) {
+        model.addAttribute("title", "Add Recipe");
         model.addAttribute("instructions", newRecipe.getInstructions());
         Integer stepId = Integer.valueOf(req.getParameter("removeIngredient"));
         newRecipe.getInstructions().remove(stepId.intValue());
