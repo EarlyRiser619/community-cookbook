@@ -36,19 +36,9 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
             <a href="/recipe/user/home" class="w3-bar-item w3-button w3-hide-small w3-hover-white">My Homepage</a>
             <a href="/login" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Login</a>
             <div class="w3-dropdown-hover w3-hide-small">
-                <button class="w3-button" title="Search">Search by Category <i class="fa fa-caret-down"></i></button>
+                <button class="w3-button" title="Search">Search by Course <i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-                    <a href="/recipe/search/APPETIZER" class="w3-bar-item w3-button">Appetizer</a>
-                    <a href="/recipe/search/SOUP" class="w3-bar-item w3-button">Soup</a>
-                    <a href="/recipe/search/SALAD" class="w3-bar-item w3-button">Salad</a>
-                    <a href="/recipe/search/BREAD" class="w3-bar-item w3-button">Bread</a>
-                    <a href="/recipe/search/SANDWICH" class="w3-bar-item w3-button">Sandwich</a>
-                    <a href="/recipe/search/SIDE" class="w3-bar-item w3-button">Side</a>
-                    <a href="/recipe/search/MAIN" class="w3-bar-item w3-button">Main</a>
-                    <a href="/recipe/search/DESSERT" class="w3-bar-item w3-button">Dessert</a>
-                    <a href="/recipe/search/BEVERAGE" class="w3-bar-item w3-button">Beverage</a>
-                    <a href="/recipe/search/OTHER" class="w3-bar-item w3-button">Other</a>
-
+                    <a th:href="'/recipe/search/' + ${type}" th:each="type : ${recipeTypes}" th:text="${type.name}" class="w3-bar-item w3-button"></a>
                 </div>
             </div>
             <a href="/logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Logout">Log Out<i class="fas fa-mug-hot w3-margin-left"></i></a>
