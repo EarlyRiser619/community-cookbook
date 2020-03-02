@@ -9,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Set;
 
@@ -44,10 +45,25 @@ public class User {
     //@JoinTable(name = "user_recipes", joinColumns = @JoinColumn(name= "user_id"), inverseJoinColumns = @JoinColumn(name = "recipe_id"))
     @JoinColumn(name="user_recipes")
     private List<Recipe> userRecipes;
+    @Lob
+    private byte[] profilePic;
+
+    public String getImageString(){
+        String s = Base64.getEncoder().encodeToString(profilePic);
+        return s;
+    }
 
     public List<Recipe> getRecipes() { return userRecipes; }
 
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }
+
+    public String getLastName() { return lastName; }
+
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
+    public byte[] getProfilePic() { return profilePic; }
+
+    public void setProfilePic(byte[] profilePic) { this.profilePic = profilePic; }
 }

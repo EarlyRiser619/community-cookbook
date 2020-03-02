@@ -13,29 +13,36 @@
 <h1 th:inline="text">Welcome <span th:text="${user.name} + ' ' + ${user.lastName}" />!</h1>
 
 <br />
-<!--<p th:unless="${user.image}"><h4>Add A Profile Picture</h4></p>-->
-<input type="file" onchange="previewFile()"><br />
-<img src="" height="200" alt="Set a Profile Picture">
+    <div class="w3-container">
+        <div th:if="${user.profilePic}">
+        <img th:src="@{'data:image/png;base64,'+${user.getImageString()}}" class="img" height="100" alt="User Profile Picture"/><hr />
+        </div>
 
-<script>
-    function previewFile() {
-    var preview = document.querySelector('img');
-    var file    = document.querySelector('input[type=file]').files[0];
-    var reader  = new FileReader();
+        <form th:action="@{/recipe/user/home}" method="post", enctype="multipart/form-data">
+            <label th:for="profilePic">Add/Change Your Profile Picture:</label>
+            <input type="file" onchange="previewFile()" id="profilePic" name="profilePic"><br />
+            <img src="" height="200">
 
-    reader.addEventListener("load", function () {
-    preview.src = reader.result;
-    }, false);
+            <script>
+                    function previewFile() {
+                    var preview = document.querySelector('img');
+                    var file    = document.querySelector('input[type=file]').files[0];
+                    var reader  = new FileReader();
 
-    if (file) {
-    reader.readAsDataURL(file);
-    }
-    }
-</script><br />
+                    reader.addEventListener("load", function () {
+                    preview.src = reader.result;
+                    }, false);
 
+                    if (file) {
+                    reader.readAsDataURL(file);
+                    }
+                    }
+                </script>
+            <button type="submit", class="w3-button w3-theme">Submit</button>
+        </form>
+    </div>
 
 <h2 th:text="${title}"></h2>
-
 
 <h4>Would you like to <a href="/recipe/add">add </a> a recipe?</h4>
 <br />

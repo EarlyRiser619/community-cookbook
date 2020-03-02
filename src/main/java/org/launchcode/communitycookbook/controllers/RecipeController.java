@@ -11,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -210,7 +212,6 @@ public class RecipeController {
     @RequestMapping(value = "user/home")
     public String userIndex(Model model, HttpServletRequest request){
         User loggedInUser = userService.findUserByEmail(request.getRemoteUser());
-        //List<Recipe> userRecipes = loggedInUser.getRecipes();
         List<Recipe> userRecipes = new ArrayList<>();
         for (Recipe recipe : recipeDao.findByUser(loggedInUser)) {
             userRecipes.add(recipe);
@@ -220,6 +221,15 @@ public class RecipeController {
         model.addAttribute("recipes", userRecipes);
         model.addAttribute("recipeTypes", RecipeType.values());
         return "user/index";
+    }
+
+    @RequestMapping(value = "user/home", method = RequestMethod.POST)
+    public String processAddProfilePic(Model model, HttpServletRequest request, @RequestParam(value="profilePic") MultipartFile file) throws IOException {
+        byte [] img = file.getBytes();
+        User loggedInUser = userService.findUserByEmail(request.getRemoteUser());
+        loggedInUser.setProfilePic(img);
+        userDao.save(loggedInUser);
+        return "redirect:user/index";
     }
 
     @RequestMapping(value = "edit/{recipeId}", method = RequestMethod.GET)
