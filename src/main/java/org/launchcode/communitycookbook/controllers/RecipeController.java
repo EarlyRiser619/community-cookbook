@@ -229,7 +229,7 @@ public class RecipeController {
         User loggedInUser = userService.findUserByEmail(request.getRemoteUser());
         loggedInUser.setProfilePic(img);
         userDao.save(loggedInUser);
-        return "redirect:user/index";
+        return "redirect:/recipe/user/home";
     }
 
     @RequestMapping(value = "edit/{recipeId}", method = RequestMethod.GET)
